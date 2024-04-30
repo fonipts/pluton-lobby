@@ -1,13 +1,13 @@
 name: packaging
-choices: 
+choices:
   - name: ""
- 
+
 script:
   pip_install:
     description: Install package
     command:
     - pip install -r requirements.txt
-  start:  
+  start:
     command:
     - python setup.py
 files:

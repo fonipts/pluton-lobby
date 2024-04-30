@@ -1,10 +1,11 @@
 name: grpc_standard
-choices: 
+choices:
   - name: ""
 dependencies:
   default:
   - grpcio-tools==1.59.2
   - grpcio==1.59.2
+  - PyJWT==2.8.0
 script:
   pip_install:
     description: Install package
@@ -13,7 +14,7 @@ script:
   proto_generate:
     description: Generate protofile
     command:
-    - python -m grpc_tools.protoc -I./protobufs --python_out=./server/proto   --grpc_python_out=./server/proto ./protobufs/test.proto  
+    - python -m grpc_tools.protoc -I./protobufs --python_out=./server/proto   --grpc_python_out=./server/proto ./protobufs/test.proto
 files:
   default:
     - file: server/command.yaml
@@ -24,5 +25,5 @@ files:
     - file: server/service/__init__.tpl
     - file: server/service/test_server.tpl
     - file: client/__init__.tpl
-    - file: client/main.tpl 
+    - file: client/main.tpl
     - file: protobufs/test.proto

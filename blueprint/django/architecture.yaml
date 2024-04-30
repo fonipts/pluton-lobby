@@ -1,5 +1,5 @@
 name: django
-choices: 
+choices:
   - name: ""
 dependencies:
   default:
@@ -9,12 +9,12 @@ script:
     description: Install package
     command:
     - pip install -r requirements.txt
-  makemigrate:  
+  makemigrate:
     command:
     - python manage.py makemigrations
   migrate:
     command:
-    - python manage.py migrate    
+    - python manage.py migrate
   start:
     command:
     - python manage.py runserver

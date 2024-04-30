@@ -1,5 +1,5 @@
 name: flask
-choices: 
+choices:
   - name: ""
 dependencies:
   default:
@@ -9,7 +9,7 @@ script:
     description: Install package
     command:
     - pip install -r requirements.txt
-  start:  
+  start:
     command:
     - flask --app main run
 files:

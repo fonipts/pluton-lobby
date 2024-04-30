@@ -1,5 +1,5 @@
 name: ariadne
-choices: 
+choices:
   - name: ""
 dependencies:
   default:
@@ -10,7 +10,7 @@ script:
     description: Install package
     command:
     - pip install -r requirements.txt
-  start:  
+  start:
     command:
     - uvicorn main:app
 files:
