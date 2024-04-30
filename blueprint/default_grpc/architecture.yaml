@@ -19,4 +19,10 @@ script:
     - python main.py
 files:
   default:
-    - file: main.tpl
+    - file: server/main.tpl
+    - file: server/settings.tpl
+    - file: server/model/__init__.tpl
+    - file: server/proto/__init__.tpl
+    - file: server/service/__init__.tpl
+    - file: client/__init__.tpl
+    - file: protobufs/test.proto

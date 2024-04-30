@@ -16,3 +16,4 @@ script:
 files:
   default:
     - file: main.tpl
+    - file: __init__.tpl
