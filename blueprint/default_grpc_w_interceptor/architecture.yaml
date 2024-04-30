@@ -25,4 +25,5 @@ files:
     - file: server/proto/__init__.tpl
     - file: server/service/__init__.tpl
     - file: client/__init__.tpl
+    - file: client/main.tpl 
     - file: protobufs/test.proto
