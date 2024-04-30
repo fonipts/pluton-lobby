@@ -14,9 +14,6 @@ script:
     description: Generate protofile
     command:
     - python -m grpc_tools.protoc -I./protobufs --python_out=./server/proto   --grpc_python_out=./server/proto ./protobufs/test.proto  
-  start:  
-    command:
-    - python main.py
 files:
   default:
     - file: server/main.tpl
