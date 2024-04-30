@@ -1,0 +1,14 @@
+name: fastapi
+choices: 
+  - name: ""
+dependencies:
+  default:
+  - "fastapi==0.104.1",
+  - "Pydantic==2.5.2",
+  - "uvicorn[standard]==0.24.0"  
+
+files:
+  default:
+    - file: main.tpl
+  
+  
