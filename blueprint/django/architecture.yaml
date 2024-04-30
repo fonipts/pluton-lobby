@@ -1,0 +1,26 @@
+name: django
+choices: 
+  - name: ""
+dependencies:
+  default:
+  - Django==5.0.4
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  makemigrate:  
+    command:
+    - python manage.py makemigrations
+  migrate:
+    command:
+    - python manage.py migrate    
+  start:
+    command:
+    - python manage.py runserver
+files:
+  default:
+    - file: main.tpl
+
+bootscript:
+  - django-admin startproject ${project_name}

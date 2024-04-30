@@ -1,0 +1,27 @@
+name: django_graphbox
+choices: 
+  - name: ""
+dependencies:
+  default:
+  - django-graphbox==1.2.9
+  - graphene-file-upload==1.3.0
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  makemigrate:  
+    command:
+    - python manage.py makemigrations
+  migrate:
+    command:
+    - python manage.py migrate    
+  start:
+    command:
+    - python manage.py runserver
+files:
+  default:
+    - file: main.tpl
+
+bootscript:
+  - django-admin startproject ${project_name}

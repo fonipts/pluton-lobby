@@ -1,0 +1,17 @@
+name: flask
+choices: 
+  - name: ""
+dependencies:
+  default:
+  - Flask==3.0.0
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  start:  
+    command:
+    - flask --app main run
+files:
+  default:
+    - file: main.tpl

@@ -1,0 +1,17 @@
+name: web3
+choices: 
+  - name: ""
+dependencies:
+  default:
+  - web3==6.13.0
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  start:  
+    command:
+    - python main.py
+files:
+  default:
+    - file: main.tpl

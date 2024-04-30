@@ -1,0 +1,15 @@
+name: packaging
+choices: 
+  - name: ""
+ 
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  start:  
+    command:
+    - python setup.py
+files:
+  default:
+    - file: setup.tpl

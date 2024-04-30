@@ -1,0 +1,29 @@
+name: django_rest
+choices: 
+  - name: ""
+dependencies:
+  default:
+  - Django==4.1
+  - djangorestframework==3.14.0
+  - markdown==3.5.1
+  - django-filter==23.3
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  makemigrate:  
+    command:
+    - python manage.py makemigrations
+  migrate:
+    command:
+    - python manage.py migrate    
+  start:
+    command:
+    - python manage.py runserver
+files:
+  default:
+    - file: main.tpl
+
+bootscript:
+  - django-admin startproject ${project_name}

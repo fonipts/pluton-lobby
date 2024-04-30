@@ -1,0 +1,17 @@
+name: graphene
+choices: 
+  - name: ""
+dependencies:
+  default:
+  - graphene==3.3
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  start:  
+    command:
+    - python main.py
+files:
+  default:
+    - file: main.tpl

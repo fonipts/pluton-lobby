@@ -1,0 +1,22 @@
+name: grpc_w_intercepter
+choices: 
+  - name: ""
+dependencies:
+  default:
+  - grpcio-tools==1.59.2
+  - grpcio==1.59.2
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  proto_generate:
+    description: Generate protofile
+    command:
+    - python -m grpc_tools.protoc -I./protobufs --python_out=./server/proto   --grpc_python_out=./server/proto ./protobufs/test.proto  
+  start:  
+    command:
+    - python main.py
+files:
+  default:
+    - file: main.tpl

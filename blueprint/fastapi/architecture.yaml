@@ -1,0 +1,19 @@
+name: fastapi
+choices: 
+  - name: ""
+dependencies:
+  default:
+  - fastapi==0.104.1
+  - Pydantic==2.5.2
+  - uvicorn[standard]==0.24.0
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  start:  
+    command:
+    - uvicorn main:app
+files:
+  default:
+    - file: main.tpl
