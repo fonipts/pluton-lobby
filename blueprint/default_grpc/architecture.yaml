@@ -16,6 +16,7 @@ script:
     - python -m grpc_tools.protoc -I./protobufs --python_out=./server/proto   --grpc_python_out=./server/proto ./protobufs/test.proto
 files:
   default:
+    - file: server/command.yaml
     - file: server/main.tpl
     - file: server/settings.tpl
     - file: server/model/__init__.tpl
