@@ -1,9 +1,42 @@
 name: bottle
 choices:
-  - name: ""
+  - name: name
+    question: What is your name
+    type: input
+  - name: database
+    question: What is your Database choice?
+    type: single_choice
+    option:
+      - postgres
+      - mysql
+      - none
+  - name: redis
+    question: Do you want Redis?
+    type: single_choice
+    option:
+      - yes
+      - no
+  - name: docker
+    question: Do you want Docker?
+    type: single_choice
+    option:
+      - yes
+      - no
 dependencies:
   default:
   - bottle==0.12.25
+  optional:
+    - condition: choices.database == "postgres"
+      dependent:
+      - SQLAlchemy==2.0.23
+      - psycopg[binary,pool]==3.1.14
+    - condition: choices.database == "mysql"
+      dependent:
+      - SQLAlchemy==2.0.23
+      - PyMySQL==1.1.0
+    - condition: choices.redis == "yes"
+      dependent:
+      - redis==5.0.4
 script:
   pip_install:
     description: Install package
@@ -16,3 +49,7 @@ files:
   default:
     - file: main.tpl
     - file: __init__.tpl
+  optional:
+    - condition: choices.database != "none"
+      dependent:
+      - file: db.tpl
