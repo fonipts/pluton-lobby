@@ -23,4 +23,4 @@ files:
     - file: main.tpl
 
 bootscript:
-  - django-admin startproject ${project_name}
+  - django-admin startproject {project_name}
