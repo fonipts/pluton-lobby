@@ -12,7 +12,7 @@
 
 ({   
     @condition{
-        $choices.database == "postgres"
+        choices.database == "postgres"
     }
     @content{
     engine = create_engine(f'postgresql+psycopg://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_CONNECTION")}/{config("DB_NAME")}')
@@ -24,7 +24,7 @@
     }
     @end{}
     @condition{
-        $choices.database == "mysql"
+        choices.database == "mysql"
     }
     @content{
     engine = create_engine(f'mysql://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_CONNECTION")}/{config("DB_NAME")}')
