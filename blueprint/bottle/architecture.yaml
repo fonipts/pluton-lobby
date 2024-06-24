@@ -17,7 +17,7 @@ choices:
       - "yes"
       - "no"
   - name: docker
-    question: Do you want Docker?
+    question: Do you want Dockerfile?
     type: single_choice
     option:
       - "yes"
@@ -53,3 +53,6 @@ files:
     - condition: database != "none"
       dependent:
       - file: db.tpl
+    - condition: docker == "yes"
+      dependent:
+      - file: Dockerfile
