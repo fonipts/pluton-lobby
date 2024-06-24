@@ -14,14 +14,14 @@ choices:
     question: Do you want Redis?
     type: single_choice
     option:
-      - yes
-      - no
+      - "yes"
+      - "no"
   - name: docker
     question: Do you want Docker?
     type: single_choice
     option:
-      - yes
-      - no
+      - "yes"
+      - "no"
 dependencies:
   default:
   - bottle==0.12.25
