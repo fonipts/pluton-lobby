@@ -1,9 +1,40 @@
 name: django
 choices:
-  - name: ""
+  - name: name
+    question: What is your name
+    type: input
+  - name: database
+    question: What is your Database choice?
+    type: single_choice
+    option:
+      - postgres
+      - mysql
+      - none
+  - name: redis
+    question: Do you want Redis?
+    type: single_choice
+    option:
+      - "yes"
+      - "no"
+  - name: docker
+    question: Do you want Dockerfile?
+    type: single_choice
+    option:
+      - "yes"
+      - "no"
 dependencies:
   default:
   - Django==5.0.4
+  optional:
+    - condition: database == "postgres"
+      dependent:
+      - psycopg[binary,pool]==3.1.14
+    - condition: database == "mysql"
+      dependent:
+      - PyMySQL==1.1.0
+    - condition: redis == "yes"
+      dependent:
+      - redis==5.0.4  
 script:
   pip_install:
     description: Install package
@@ -19,8 +50,9 @@ script:
     command:
     - python manage.py runserver
 files:
-  default:
-    - file: main.tpl
-
+  optional:
+    - condition: docker == "yes"
+      dependent:
+      - file: Dockerfile
 bootscript:
   - django-admin startproject {project_name}

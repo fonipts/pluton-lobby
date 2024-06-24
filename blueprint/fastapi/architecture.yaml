@@ -1,11 +1,44 @@
 name: fastapi
 choices:
-  - name: ""
+  - name: name
+    question: What is your name
+    type: input
+  - name: database
+    question: What is your Database choice?
+    type: single_choice
+    option:
+      - postgres
+      - mysql
+      - none
+  - name: redis
+    question: Do you want Redis?
+    type: single_choice
+    option:
+      - "yes"
+      - "no"
+  - name: docker
+    question: Do you want Dockerfile?
+    type: single_choice
+    option:
+      - "yes"
+      - "no"
 dependencies:
   default:
   - fastapi==0.104.1
   - Pydantic==2.5.2
   - uvicorn[standard]==0.24.0
+  optional:
+    - condition: database == "postgres"
+      dependent:
+      - SQLAlchemy==2.0.23
+      - psycopg[binary,pool]==3.1.14
+    - condition: database == "mysql"
+      dependent:
+      - SQLAlchemy==2.0.23
+      - PyMySQL==1.1.0
+    - condition: redis == "yes"
+      dependent:
+      - redis==5.0.4  
 script:
   pip_install:
     description: Install package
@@ -18,3 +51,10 @@ files:
   default:
     - file: main.tpl
     - file: __init__.tpl
+  optional:
+    - condition: database != "none"
+      dependent:
+      - file: db.tpl
+    - condition: docker == "yes"
+      dependent:
+      - file: Dockerfile
