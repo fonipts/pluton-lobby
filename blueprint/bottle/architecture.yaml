@@ -26,15 +26,15 @@ dependencies:
   default:
   - bottle==0.12.25
   optional:
-    - condition: choices.database == "postgres"
+    - condition: database == "postgres"
       dependent:
       - SQLAlchemy==2.0.23
       - psycopg[binary,pool]==3.1.14
-    - condition: choices.database == "mysql"
+    - condition: database == "mysql"
       dependent:
       - SQLAlchemy==2.0.23
       - PyMySQL==1.1.0
-    - condition: choices.redis == "yes"
+    - condition: redis == "yes"
       dependent:
       - redis==5.0.4
 script:
@@ -49,7 +49,8 @@ files:
   default:
     - file: main.tpl
     - file: __init__.tpl
+    - file: db.tpl
   optional:
-    - condition: choices.database != "none"
+    - condition: database != "none"
       dependent:
       - file: db.tpl
