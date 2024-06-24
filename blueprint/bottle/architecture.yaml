@@ -49,8 +49,8 @@ files:
   default:
     - file: main.tpl
     - file: __init__.tpl
-    - file: db.tpl
-  #optional:
-  #  - condition: database != "none"
-  #    dependent:
-  #    - file: db.tpl
+  #  - file: db.tpl
+  optional:
+    - condition: database != "none"
+      dependent:
+      - file: db.tpl
