@@ -20,8 +20,10 @@ choices:
     question: Do you want Dockerfile?
     type: single_choice
     option:
-      - "yes"
-      - "no"
+      - "None"
+      - "python"
+      - "nginx"
+      - "apache2"
 dependencies:
   default:
   - Flask==3.0.0
@@ -51,6 +53,6 @@ files:
     - file: __init__.tpl
     - file: README.md
   optional:
-    - condition: docker == "yes"
+    - condition: docker != "None"
       dependent:
       - file: Dockerfile

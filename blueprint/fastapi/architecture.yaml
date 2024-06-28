@@ -20,8 +20,10 @@ choices:
     question: Do you want Dockerfile?
     type: single_choice
     option:
-      - "yes"
-      - "no"
+      - "No plan"
+      - "python"
+      - "nginx"
+      - "apache2"
 dependencies:
   default:
   - fastapi==0.104.1
@@ -56,6 +58,6 @@ files:
     - condition: database != "none"
       dependent:
       - file: db.tpl
-    - condition: docker == "yes"
+    - condition: docker != "No plan"
       dependent:
       - file: Dockerfile

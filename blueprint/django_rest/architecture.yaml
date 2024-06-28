@@ -61,4 +61,4 @@ files:
       - file: Dockerfile
 
 bootscript:
-  - django-admin startproject {project_name}
+  - command: django-admin startproject {{folder_name}}
