@@ -17,3 +17,4 @@ files:
   default:
     - file: main.tpl
     - file: __init__.tpl
+    - file: README.md

@@ -20,8 +20,10 @@ choices:
     question: Do you want Dockerfile?
     type: single_choice
     option:
-      - "yes"
-      - "no"
+      - "No plan"
+      - "python"
+      - "nginx"
+      - "apache2"
 dependencies:
   default:
   - bottle==0.12.25
@@ -49,10 +51,11 @@ files:
   default:
     - file: main.tpl
     - file: __init__.tpl
+    - file: README.md
   optional:
     - condition: database != "none"
       dependent:
       - file: db.tpl
-    - condition: docker == "yes"
+    - condition: docker != "No plan"
       dependent:
       - file: Dockerfile

@@ -53,6 +53,8 @@ script:
     command:
     - python manage.py runserver
 files:
+  default:
+    - file: README.md
   optional:
     - condition: docker == "yes"
       dependent:

@@ -59,6 +59,7 @@ files:
     - file: client/__init__.tpl
     - file: client/main.tpl
     - file: protobufs/test.proto
+    - file: README.md
   optional:
     - condition: docker == "yes"
       dependent:

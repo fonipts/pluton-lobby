@@ -50,9 +50,11 @@ script:
     command:
     - python manage.py runserver
 files:
+  default:
+    - file: README.md
   optional:
     - condition: docker == "yes"
       dependent:
       - file: Dockerfile
 bootscript:
-  - django-admin startproject {project_name}
+  - django-admin startproject {{project_name}}
