@@ -1,8 +1,8 @@
 from bottle import route, run, template
 
 @route('/health')
-def health_name(name):
-    return template('<b>Hello</b>!', name=name)
+def health_name():
+    return template('<b>Hello</b>!')
 
 @route('/health/<name>')
 def health(name):

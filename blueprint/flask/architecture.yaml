@@ -45,6 +45,7 @@ script:
     command:
     - pip install -r requirements.txt
   start:
+    description: Run your application
     command:
     - flask --app main run
 files:
