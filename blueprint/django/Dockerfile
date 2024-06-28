@@ -21,4 +21,4 @@
 })
 WORKDIR /usr
 EXPOSE 8080
-RUN python main.py
+RUN python manage.py runserver
