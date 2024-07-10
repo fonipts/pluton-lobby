@@ -25,4 +25,3 @@ In a browser :
 |upper | Upper case string | Dev| Dev |
 |replace | Replace string | Dev| Dev |
 |if | If statement string | Dev | Dev |
-

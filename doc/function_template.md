@@ -36,9 +36,7 @@ In a browser :
 
 |Action type | Description | Status |
 |----------- | ----------- |--------- |
-|condition | Project name | Dev |
-|end       | Project name | Dev |
-|content   | Project name | Dev |
-|load      | Project name | Pending |
-
-
+|condition | creating your conditional statement | Dev |
+|end       | Else statement in the template | Dev |
+|content   | Content of template function that you want to render | Dev |
+|load      | Load/import the *.tpl file | Pending |

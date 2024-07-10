@@ -74,5 +74,3 @@ files:
 |dependencies | Installing packages and to save at requirements.txt |
 |script | command argument that to be save at command.yaml |
 |files | List of files that you will copy in project directory |
-
-

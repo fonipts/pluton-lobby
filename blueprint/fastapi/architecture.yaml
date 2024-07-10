@@ -16,6 +16,12 @@ choices:
     option:
       - "yes"
       - "no"
+  - name: pydantic_choice
+    question: Do you want Pydantic? for API validation and serialization
+    type: single_choice
+    option:
+      - "yes"
+      - "no"    
   - name: docker
     question: Do you want Dockerfile?
     type: single_choice
@@ -41,6 +47,9 @@ dependencies:
     - condition: redis == "yes"
       dependent:
       - redis==5.0.4  
+    - condition: pydantic_choice == "yes"
+      dependent:
+      - pydantic==2.8
 script:
   pip_install:
     description: Install package
