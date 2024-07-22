@@ -80,13 +80,13 @@ files:
     - file: README.md
   optional:
     - condition: framework == "None" && add_new_testfile == "yes"
-      mv_folder_name: "{{folder_name}}"
+      mv_folder_name: /{{folder_name}}
       dependent:
         - file: health/__init__.tplpy
         - file: health/tests.tplpy
         - file: health/views.tplpy
     - condition: framework == "django_graphbox"
-      mv_folder_name: "{{folder_name}}"
+      mv_folder_name: /{{folder_name}}
       dependent:
         - file: graph_schema/myapp/__init__.tplpy
         - file: graph_schema/myapp/models.tplpy
@@ -94,7 +94,7 @@ files:
         - file: graph_schema/myproject/__init__.tplpy
         - file: graph_schema/myproject/schema.tplpy
     - condition: framework == "django_rest_framework" && add_new_testfile == "yes"
-      mv_folder_name: "{{folder_name}}"
+      mv_folder_name: /{{folder_name}}
       dependent:
         - file: apphealth/__init__.tplpy
         - file: apphealth/tests.tplpy
