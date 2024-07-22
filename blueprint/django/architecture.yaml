@@ -16,6 +16,19 @@ choices:
     option:
       - "yes"
       - "no"
+  - name: framework
+    question: What framework do you want to use?
+    type: single_choice
+    option:
+      - "None"
+      - "django_graphbox"
+      - "django_rest_framework" 
+  - name: add_new_testfile
+    question: Do you need health page?
+    type: single_choice
+    option:
+      - "yes"
+      - "no"      
   - name: docker
     question: Do you want Dockerfile?
     type: single_choice
@@ -25,9 +38,20 @@ choices:
       - "nginx"
       - "apache2"
 dependencies:
-  default:
-  - Django==5.0.4
   optional:
+    - condition: framework == "None"
+      dependent:
+      - Django==5.0.4
+    - condition: framework == "django_graphbox"
+      dependent:
+      - django-graphbox==1.2.9
+      - graphene-file-upload==1.3.0
+    - condition: framework == "django_rest_framework"
+      dependent:
+      - Django==4.1
+      - djangorestframework==3.14.0
+      - markdown==3.5.1
+      - django-filter==23.3
     - condition: database == "postgres"
       dependent:
       - psycopg[binary,pool]==3.1.14
@@ -55,11 +79,35 @@ files:
   default:
     - file: README.md
   optional:
+    - condition: framework == "None" && add_new_testfile == "yes"
+      mv_folder_name: {{folder_name}}
+      dependent:
+      - file: health/__init__.tplpy
+      - file: health/tests.tplpy
+      - file: health/views.tplpy
+    - condition: framework == "django_graphbox"
+      mv_folder_name: {{folder_name}}
+      dependent:
+      - file: graph_schema/myapp/__init__.tplpy
+      - file: graph_schema/myapp/models.tplpy
+      - file: graph_schema/myapp/schema.tplpy
+      - file: graph_schema/myproject/__init__.tplpy
+      - file: graph_schema/myproject/schema.tplpy
+    - condition: framework == "django_rest_framework" && add_new_testfile == "yes"
+      mv_folder_name: {{folder_name}}
+      dependent:
+      - file: apphealth/__init__.tplpy
+      - file: apphealth/tests.tplpy
+      - file: apphealth/serializers.tplpy
+      - file: apphealth/url.tplpy
+      - file: apphealth/models.tplpy
+      - file: apphealth/views.tplpy      
     - condition: docker != "None"
       dependent:
       - file: Dockerfile.tpl
 bootscript:
   - command: django-admin startproject {{folder_name}}
+    exec_position: start
   - command: mv command.yaml {{folder_name}}/command.yaml
   - command: mv Dockerfile {{folder_name}}/Dockerfile
   - command: mv requirements.txt {{folder_name}}/requirements.txt
