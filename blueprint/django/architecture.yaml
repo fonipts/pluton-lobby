@@ -60,4 +60,5 @@ files:
       - file: Dockerfile.tpl
 bootscript:
   - command: django-admin startproject {{folder_name}}
+  - command: cp command.yaml {{folder_name}}/command.yaml
 
