@@ -49,13 +49,14 @@ script:
     - python main.py
 files:
   default:
-    - file: main.tpl
-    - file: __init__.tpl
+    - file: main.tplpy
+    - file: __init__.tplpy
     - file: README.md
   optional:
     - condition: database != "none"
       dependent:
-      - file: db.tpl
+      - file: db.tplpy
     - condition: docker != "No plan"
       dependent:
-      - file: Dockerfile
+      - file: Dockerfile.tpl
+

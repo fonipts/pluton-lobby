@@ -12,4 +12,5 @@ script:
     - python setup.py
 files:
   default:
-    - file: setup.tpl
+    - file: setup.tplpy
+

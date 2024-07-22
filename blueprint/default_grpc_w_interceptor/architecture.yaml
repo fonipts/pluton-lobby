@@ -18,12 +18,13 @@ script:
 files:
   default:
     - file: server/command.yaml
-    - file: server/main.tpl
-    - file: server/settings.tpl
-    - file: server/model/__init__.tpl
-    - file: server/proto/__init__.tpl
-    - file: server/service/__init__.tpl
-    - file: server/service/test_server.tpl
-    - file: client/__init__.tpl
-    - file: client/main.tpl
+    - file: server/main.tplpy
+    - file: server/settings.tplpy
+    - file: server/model/__init__.tplpy
+    - file: server/proto/__init__.tplpy
+    - file: server/service/__init__.tplpy
+    - file: server/service/test_server.tplpy
+    - file: client/__init__.tplpy
+    - file: client/main.tplpy
     - file: protobufs/test.proto
+

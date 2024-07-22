@@ -58,7 +58,7 @@ files:
   optional:
     - condition: docker != "None"
       dependent:
-      - file: Dockerfile
+      - file: Dockerfile.tpl
 
 bootscript:
   - command: django-admin startproject {{folder_name}}

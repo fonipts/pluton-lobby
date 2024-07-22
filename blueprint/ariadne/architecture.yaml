@@ -15,6 +15,7 @@ script:
     - uvicorn main:app
 files:
   default:
-    - file: main.tpl
-    - file: __init__.tpl
+    - file: main.tplpy
+    - file: __init__.tplpy
     - file: README.md
+
