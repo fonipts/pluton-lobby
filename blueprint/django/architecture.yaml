@@ -83,6 +83,7 @@ files:
       mv_folder_name: /{{folder_name}}/{{folder_name}}/
       dependent:
         - file: health/__init__.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/health/__init__.tplpy
         - file: health/tests.tplpy
         - file: health/views.tplpy
     - condition: framework == "django_graphbox"
@@ -108,7 +109,8 @@ files:
 bootscript:
   - command: django-admin startproject {{folder_name}}
     exec_position: start
-  - command: mv command.yaml {{folder_name}}/command.yaml
+  - condition: docker != "None"  
+    command: mv command.yaml {{folder_name}}/command.yaml
   - command: mv Dockerfile {{folder_name}}/Dockerfile
   - command: mv requirements.txt {{folder_name}}/requirements.txt
   - command: mv project.yaml {{folder_name}}/project.yaml
