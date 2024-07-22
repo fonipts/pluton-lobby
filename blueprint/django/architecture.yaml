@@ -60,5 +60,8 @@ files:
       - file: Dockerfile.tpl
 bootscript:
   - command: django-admin startproject {{folder_name}}
-  - command: cp command.yaml {{folder_name}}/command.yaml
+  - command: mv command.yaml {{folder_name}}/command.yaml
+  - command: mv Dockerfile {{folder_name}}/Dockerfile
+  - command: mv requirements.txt {{folder_name}}/requirements.txt
+  - command: mv project.yaml {{folder_name}}/project.yaml    
 
