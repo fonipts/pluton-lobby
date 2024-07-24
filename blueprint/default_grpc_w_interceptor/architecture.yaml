@@ -27,4 +27,7 @@ files:
     - file: client/__init__.tplpy
     - file: client/main.tplpy
     - file: protobufs/test.proto
+bootscript:
+  - command: pip install -r requirements.txt
+    exec_position: start
 

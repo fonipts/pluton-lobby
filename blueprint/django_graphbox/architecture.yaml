@@ -59,6 +59,8 @@ files:
     - condition: docker != "None"
       dependent:
       - file: Dockerfile.tpl
-
 bootscript:
+  - command: pip install -r requirements.txt
+    exec_position: start
   - command: django-admin startproject {{folder_name}}
+    exec_position: start

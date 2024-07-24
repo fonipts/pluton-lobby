@@ -65,3 +65,6 @@ files:
       dependent:
       - file: server/Dockerfile.tpl
 
+bootscript:
+  - command: pip install -r requirements.txt
+    exec_position: start
