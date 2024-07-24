@@ -16,6 +16,12 @@ choices:
     option:
       - "yes"
       - "no"
+  - name: basic_auth
+    question: Do you want to have basic authentication?
+    type: single_choice
+    option:
+      - "yes"
+      - "no"      
   - name: docker
     question: Do you want Dockerfile?
     type: single_choice
@@ -60,6 +66,13 @@ files:
     - file: client/main.tplpy
     - file: protobufs/test.proto
     - file: README.md
+    - condition: basic_auth == "yes"
+      dependent:
+        - file: server/utils/interceptor.tplpy   
+        - file: protobufs/auth.proto 
+    - condition: database != "none"
+      dependent:
+      - file: server/db.tplpy
   optional:
     - condition: docker == "yes"
       dependent:

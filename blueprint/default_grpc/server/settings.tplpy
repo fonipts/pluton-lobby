@@ -7,3 +7,15 @@ ROUTES = [{
 }]
 
 
+({   
+        @condition{
+            basic_auth == "yes"
+        }
+        @content{
+        PUBLIC_ROUTES = [
+            "/grpc.Auth/login"
+        ]
+
+        }
+
+    })

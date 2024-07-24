@@ -1,0 +1,40 @@
+
+import grpc
+from settings import PUBLIC_ROUTES
+import jwt
+from decouple import config
+
+class AuthenticationInterceptor:
+    def __init__(self,code, details):
+
+        self._terminator = self._unary_unary_rpc_terminator(code, details)
+
+    def _unary_unary_rpc_terminator(self,code, details):
+
+        def terminate(ignored_request, context):
+            context.abort(code, details)
+
+        return grpc.unary_unary_rpc_method_handler(terminate)
+
+    def intercept_service(self, continuation, handler_call_details):
+        reference = {}
+
+        for val in handler_call_details.invocation_metadata:
+            reference[val.key] = val.value
+
+        if handler_call_details.method in PUBLIC_ROUTES:
+            return continuation(handler_call_details)
+        is_expire = 0
+        if "authorization" in reference:
+            secret_key = config("JWT_TOKEN")
+            try:
+                jwt.decode(reference["authorization"], secret_key, algorithms=["HS256"])
+                is_expire =1
+            except jwt.ExpiredSignatureError:
+                is_expire =2
+            except Exception:
+                is_expire =2
+
+        if is_expire == 1:
+            return continuation(handler_call_details)
+        return self._terminator

@@ -1,0 +1,30 @@
+from sqlalchemy.orm import declarative_base
+
+import copy
+
+Base = declarative_base()
+def page_limit(db,page):
+    db_limit = 30
+    return db.limit(db_limit).offset(db_limit*page)
+
+def fetch(session,db,page):
+
+    return fetchDB(session, copy.deepcopy(page_limit(db,page).all()))
+
+def fetchDB(session,db):
+
+    try:
+        data = db 
+        return data
+    except:
+        session.rollback()
+        data = db
+        
+        return data
+
+    finally:
+        session.close()
+
+def addCommit(table):
+    pass
+
