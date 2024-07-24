@@ -85,9 +85,9 @@ files:
         - file: health/__init__.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/health/__init__.tplpy
         - file: health/tests.tplpy
-	  mv_file: /{{folder_name}}/{{folder_name}}/health/tests.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/health/tests.tplpy
         - file: health/views.tplpy
-  	  mv_file: /{{folder_name}}/{{folder_name}}/health/views.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/health/views.tplpy
     - condition: framework == "django_graphbox"
       mv_folder_name: /{{folder_name}}/{{folder_name}}/
       dependent:
@@ -100,11 +100,17 @@ files:
       mv_folder_name: /{{folder_name}}/{{folder_name}}/
       dependent:
         - file: apphealth/__init__.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/__init__.tplpy        
         - file: apphealth/tests.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/tests.tplpy        
         - file: apphealth/serializers.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/serializers.tplpy        
         - file: apphealth/url.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/url.tplpy        
         - file: apphealth/models.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/models.tplpy        
         - file: apphealth/views.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/views.tplpy        
     - condition: docker != "None"
       dependent:
         - file: Dockerfile.tpl
