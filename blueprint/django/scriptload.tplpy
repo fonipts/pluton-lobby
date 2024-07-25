@@ -19,7 +19,7 @@ app_setting_var = {
     }
 
 }
-
+{{database}} = ""
 
 DATABASE_RAW = '''
 ({   
