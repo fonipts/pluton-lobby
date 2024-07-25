@@ -37,8 +37,8 @@ DATABASE_RAW = '''
         "PORT": config("DB_PORT")
         }
     }
-}
-    
+}   
+    @end{}    
     @condition{
         database == "mysql"
     }
