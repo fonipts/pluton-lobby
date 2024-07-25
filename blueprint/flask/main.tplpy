@@ -1,12 +1,5 @@
 from flask import Flask
-({   
-    @condition{
-        blueprint == "yes"
-    }
-    @content{
-    from views.simple_page import simple_page
-    }
-})
+{{blueprint|if(yes,"from views.simple_page import simple_page")}}
 ({   
     @condition{
         database != "none"
@@ -48,9 +41,7 @@ app = Flask(__name__)
         blueprint == "yes"
     }
     @content{
-    
     app.register_blueprint(simple_page)
-
     }
 })
 @app.route("/heath")
