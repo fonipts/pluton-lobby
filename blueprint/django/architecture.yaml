@@ -144,4 +144,4 @@ bootscript:
     command: python scriptload.py setting_app {{folder_name}} default    
   - condition: database != "None"
     command: python scriptload.py setting_db_app {{folder_name}} default    
-  - command: rm -rf scriptload.py
+#  - command: rm -rf scriptload.py
