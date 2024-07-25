@@ -53,7 +53,8 @@ DATABASE_RAW = '''
         "PORT": config("DB_PORT")
     }
 }
-    }@end{}
+    }
+    @end{}
     @content{
     DATABASES = {
     "default": {
