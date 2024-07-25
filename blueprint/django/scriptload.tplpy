@@ -14,7 +14,7 @@ app_setting_var = {
     },
     "drf": {
         "import":[],
-        "value":["@package_name.apphealth"],
+        "value":["rest_framework","@package_name.apphealth"],
         "append":[]
     }
 

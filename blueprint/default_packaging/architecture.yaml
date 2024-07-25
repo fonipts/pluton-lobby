@@ -1,6 +1,8 @@
 name: packaging
 choices:
-  - name: ""
+  - name: name
+    question: What is your name
+    type: input
 
 script:
   pip_install:

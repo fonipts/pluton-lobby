@@ -11,7 +11,7 @@ _version_re = re.compile(r'__version__\s+=\s+(.*)')
 
 
 setup(
-    name='({TEST_NAME})',
+    name='{{name}}',
     version=version,
     url='https://plutonkit.codehyouka.xyz/',
     author='Codehyouka',

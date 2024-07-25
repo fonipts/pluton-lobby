@@ -23,6 +23,7 @@ choices:
       - "None"
       - "django_graphbox"
       - "django_rest_framework"
+      - "django_ninja"
   - name: add_new_testfile
     question: Do you need health page?
     type: single_choice
@@ -41,7 +42,7 @@ dependencies:
   optional:
     - condition: framework == "None"
       dependent:
-        - Django==5.0.4
+        - Django==5.0.7
     - condition: framework == "django_graphbox"
       dependent:
         - django-graphbox==1.2.9
@@ -52,6 +53,10 @@ dependencies:
         - djangorestframework==3.14.0
         - markdown==3.5.1
         - django-filter==23.3
+    - condition: framework == "django_ninja"
+      dependent:
+        - Django==5.0.7
+        - django-ninja 1.2.2
     - condition: database == "postgres"
       dependent:
         - psycopg[binary,pool]==3.1.14
@@ -107,7 +112,6 @@ files:
         - file: graph_schema/myproject/schema.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/graph_schema/myproject/schema.tplpy          
     - condition: framework == "django_rest_framework" && add_new_testfile == "yes"
-      mv_folder_name: /{{folder_name}}/{{folder_name}}/
       dependent:
         - file: project/drf/urls.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/urls.tplpy
@@ -123,6 +127,9 @@ files:
           mv_file: /{{folder_name}}/{{folder_name}}/apphealth/models.tplpy        
         - file: apphealth/views.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/apphealth/views.tplpy        
+    - condition: framework == "django_ninja" && add_new_testfile == "yes"
+      dependent:
+        - file: project/ninja/urls.tplpy
     - condition: docker != "None"
       dependent:
         - file: Dockerfile.tpl
@@ -144,4 +151,4 @@ bootscript:
     command: python scriptload.py setting_app {{folder_name}} default    
   - condition: database != "None"
     command: python scriptload.py setting_db_app {{folder_name}} default    
-#  - command: rm -rf scriptload.py
+  - command: rm -rf scriptload.py

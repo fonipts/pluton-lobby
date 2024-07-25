@@ -1,6 +1,14 @@
 from flask import Flask
 ({   
     @condition{
+        blueprint == "yes"
+    }
+    @content{
+    from views.simple_page import simple_page
+    }
+})
+({   
+    @condition{
         database != "none"
     }
     @content{
@@ -10,11 +18,7 @@ from flask import Flask
     from urllib.parse import quote_plus
 
     }
-    @end{}
-    @content{
-    
 
-    }
 })
 #noqa: create the app
 app = Flask(__name__)
@@ -36,6 +40,16 @@ app = Flask(__name__)
     db = SQLAlchemy()
     app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_CONNECTION")}/{config("DB_NAME")}'
     db.init_app(app)
+
+    }
+})
+({   
+    @condition{
+        blueprint == "yes"
+    }
+    @content{
+    
+    app.register_blueprint(simple_page)
 
     }
 })

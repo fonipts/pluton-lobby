@@ -10,12 +10,18 @@ choices:
       - postgres
       - mysql
       - none
+  - name: blueprint
+    question: Do you want to use Blueprint?
+    type: single_choice
+    option:
+      - "yes"
+      - "no"
   - name: redis
     question: Do you want Redis?
     type: single_choice
     option:
       - "yes"
-      - "no"
+      - "no"      
   - name: docker
     question: Do you want Dockerfile?
     type: single_choice
@@ -57,6 +63,12 @@ files:
     - condition: docker != "None"
       dependent:
       - file: Dockerfile.tpl
+    - condition: blueprint == "yes"
+      dependent:
+      - file: views/__init__.tplpy
+      - file: views/simple_page.tplpy
+      - file: templates/__init__.tplpy
 bootscript:
   - command: pip install -r requirements.txt
     exec_position: start
+
