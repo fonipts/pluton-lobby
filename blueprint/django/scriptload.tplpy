@@ -4,7 +4,7 @@ import re
 app_setting_var = {
     "default": {
         "import":[],
-        "value":[".health"],
+        "value":["@package_name.health"],
         "append":[]
     },
     "graphbox": {
@@ -14,12 +14,55 @@ app_setting_var = {
     },
     "drf": {
         "import":[],
-        "value":[".apphealth"],
+        "value":["@package_name.apphealth"],
         "append":[]
     }
 
 }
 
+
+DATABASE_RAW = """({   
+    @condition{
+        database == "postgres"
+    }
+    @content{
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": config("DB_NAME"),
+            "USER": config("DB_USER"),
+            "PASSWORD": quote_plus(config("DB_PASSWORD")),
+            "HOST": config("DB_HOST"),
+            "PORT": config("DB_PORT")
+        }
+    }
+    }
+    
+    @condition{
+        database == "mysql"
+    }
+    @content{
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": config("DB_NAME"),
+            "USER": config("DB_USER"),
+            "PASSWORD": quote_plus(config("DB_PASSWORD")),
+            "HOST": config("DB_HOST"),
+            "PORT": config("DB_PORT")
+        }
+    }
+    }@end{}
+    @content{
+        DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+    }
+})
+"""
 def main():
     
     types = sys.argv[1]
@@ -43,6 +86,22 @@ def main():
                 content_replace  = get_replace_install.replace("\n]","\n"+",\n".join([ '    "'+x.replace("@package_name",package_name)+'"' for x in app_value])+"\n]")
                 content  = content.replace(get_replace_install,content_replace)
                 content =content+"\n".join([x for x in app_append])+"\n"
+                write_file(file_loc,content)
+
+    if types == "setting_db_app":
+        file_loc = os.path.join(
+                directory, package_name,package_name, "settings.py"
+            )
+        with open(file_loc,"r") as read_file:
+            content  =read_file.read()
+            results = re.findall(r"(DATABASES[\s\n]{0,}\=[\s\n]{0,}\{[\n\s\"\'\w\d\:\{\}\.\,\/\\]{1,}\})",content)
+            if len(results) >0:
+                get_replace_install = results[0]
+                content = """
+                from decouple import config\n
+                from urllib.parse import quote_plus\n\n
+                """+content
+                content  = content.replace(get_replace_install,DATABASE_RAW)
                 write_file(file_loc,content)
 
 def write_file(file,content):
