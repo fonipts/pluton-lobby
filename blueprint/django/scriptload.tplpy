@@ -27,7 +27,7 @@ DATABASE_RAW = '''
         database == "postgres"
     }
     @content{
-DATABASES = {
+    DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": config("DB_NAME"),
@@ -43,7 +43,7 @@ DATABASES = {
         database == "mysql"
     }
     @content{
-DATABASES = {
+    DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": config("DB_NAME"),
@@ -55,7 +55,7 @@ DATABASES = {
 }
     }@end{}
     @content{
-DATABASES = {
+    DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
