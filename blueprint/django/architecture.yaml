@@ -129,7 +129,7 @@ files:
           mv_file: /{{folder_name}}/{{folder_name}}/apphealth/views.tplpy        
     - condition: framework == "django_ninja" && add_new_testfile == "yes"
       dependent:
-        - file: project/ninja/urls.tplpy
+        - file: /{{folder_name}}/{{folder_name}}/urls.tplpy
     - condition: docker != "None"
       dependent:
         - file: Dockerfile.tpl
