@@ -19,7 +19,7 @@ app_setting_var = {
     }
 
 }
-{{database}} = ""
+
 
 DATABASE_RAW = '''
 ({   
@@ -38,7 +38,7 @@ DATABASE_RAW = '''
         }
     }
 }   
-
+    @end{}    
     @condition{
         database == "mysql"
     }
@@ -53,8 +53,7 @@ DATABASE_RAW = '''
         "PORT": config("DB_PORT")
     }
 }
-}
-    @end{}
+    }@end{}
     @content{
     DATABASES = {
     "default": {
@@ -101,9 +100,9 @@ def main():
             if len(results) >0:
                 get_replace_install = results[0]
                 content = """
-                from decouple import config\n
-                from urllib.parse import quote_plus\n\n
-                """+content
+from decouple import config\n
+from urllib.parse import quote_plus\n\n
+"""+content
                 content  = content.replace(get_replace_install,DATABASE_RAW)
                 write_file(file_loc,content)
 
