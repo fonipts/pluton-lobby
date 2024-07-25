@@ -135,3 +135,10 @@ bootscript:
   - command: mv command.yaml {{folder_name}}/command.yaml
   - command: mv requirements.txt {{folder_name}}/requirements.txt
   - command: mv project.yaml {{folder_name}}/project.yaml
+  - condition: framework == "django_rest_framework"
+    command: python scriptload.py setting_app {{folder_name}} drf
+  - condition: framework == "django_graphbox"
+    command: python scriptload.py setting_app {{folder_name}} graphbox
+  - condition: framework == "None"
+    command: python scriptload.py setting_app {{folder_name}} default    
+  - command: rm -rf scriptload.py

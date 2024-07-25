@@ -1,4 +1,0 @@
-script:
-  start:
-    command:
-    - python main.py
