@@ -150,8 +150,6 @@ bootscript:
     command: python scriptload.py setting_app {{folder_name}} graphbox
   - condition: framework == "None"
     command: python scriptload.py setting_app {{folder_name}} default    
-  - condition: framework == "ninja"
-    command: python scriptload.py setting_app {{folder_name}} ninja    
   - condition: database != "None"
     command: python scriptload.py setting_db_app {{folder_name}} default    
   - command: rm -rf scriptload.py
