@@ -53,6 +53,7 @@ script:
     description: Generate protofile
     command:
     - python -m grpc_tools.protoc -I./protobufs --python_out=./server/proto   --grpc_python_out=./server/proto ./protobufs/test.proto
+    - python -m grpc_tools.protoc -I./protobufs --python_out=./server/proto   --grpc_python_out=./server/proto ./protobufs/auth.proto
 files:
   default:
     - file: server/command.yaml

@@ -84,6 +84,8 @@ files:
       dependent:
         - file: health/__init__.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/health/__init__.tplpy
+        - file: project/default/urls.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/urls.tplpy
         - file: health/tests.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/health/tests.tplpy
         - file: health/views.tplpy
@@ -91,11 +93,18 @@ files:
     - condition: framework == "django_graphbox"
       mv_folder_name: /{{folder_name}}/{{folder_name}}/
       dependent:
+        - file: project/graphbox  /urls.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/urls.tplpy
         - file: graph_schema/myapp/__init__.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/graph_schema/myapp/__init__.tplpy          
         - file: graph_schema/myapp/models.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/graph_schema/myapp/models.tplpy          
         - file: graph_schema/myapp/schema.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/graph_schema/myapp/schema.tplpy          
         - file: graph_schema/myproject/__init__.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/graph_schema/myproject/__init__.tplpy          
         - file: graph_schema/myproject/schema.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/graph_schema/myproject/schema.tplpy          
     - condition: framework == "django_rest_framework" && add_new_testfile == "yes"
       mv_folder_name: /{{folder_name}}/{{folder_name}}/
       dependent:

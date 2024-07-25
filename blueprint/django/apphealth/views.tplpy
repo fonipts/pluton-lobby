@@ -1,7 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
-from ({DJANGO_TEST_NAME}).apptest.models import Snippet
-from ({DJANGO_TEST_NAME}).apptest.serializers import SnippetSerializer
+from .models import Snippet
+from .serializers import SnippetSerializer
 
 
 
