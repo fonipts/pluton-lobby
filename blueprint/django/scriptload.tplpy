@@ -23,22 +23,7 @@ app_setting_var = {
 
 DATABASE_RAW = '''
 ({   
-    @condition{
-        database == "postgres"
-    }
-    @content{
-    DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": quote_plus(config("DB_PASSWORD")),
-        "HOST": config("DB_HOST"),
-        "PORT": config("DB_PORT")
-        }
-    }
-}   
-    @end{}    
+     
     @condition{
         database == "mysql"
     }
