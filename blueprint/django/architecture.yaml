@@ -78,6 +78,7 @@ script:
 files:
   default:
     - file: README.md
+    - file: scriptload.py
   optional:
     - condition: framework == "None" && add_new_testfile == "yes"
       mv_folder_name: /{{folder_name}}/{{folder_name}}/
