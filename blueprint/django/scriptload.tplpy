@@ -27,40 +27,40 @@ DATABASE_RAW = '''
         database == "postgres"
     }
     @content{
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": config("DB_NAME"),
-            "USER": config("DB_USER"),
-            "PASSWORD": quote_plus(config("DB_PASSWORD")),
-            "HOST": config("DB_HOST"),
-            "PORT": config("DB_PORT")
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": quote_plus(config("DB_PASSWORD")),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DB_PORT")
         }
     }
-    }
+}
     
     @condition{
         database == "mysql"
     }
     @content{
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": config("DB_NAME"),
-            "USER": config("DB_USER"),
-            "PASSWORD": quote_plus(config("DB_PASSWORD")),
-            "HOST": config("DB_HOST"),
-            "PORT": config("DB_PORT")
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": quote_plus(config("DB_PASSWORD")),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DB_PORT")
     }
+}
     }@end{}
     @content{
-        DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
+}
     }
 })
 '''
