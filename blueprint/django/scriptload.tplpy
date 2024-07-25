@@ -3,8 +3,8 @@ import os
 import re
 app_setting_var = {
     "default": {
-        "import":[".health"],
-        "value":[],
+        "import":[],
+        "value":[".health"],
         "append":[]
     },
     "graphbox": {
@@ -40,7 +40,7 @@ def main():
             if len(results) >0:
                 get_replace_install = results[0]
 
-                content_replace  = get_replace_install.replace("\n]","\n"+",\n".join([ '    "'+x+'"' for x in app_value])+"\n]")
+                content_replace  = get_replace_install.replace("\n]","\n"+",\n".join([ '    "'+x.replace("@package_name",package_name)+'"' for x in app_value])+"\n]")
                 content  = content.replace(get_replace_install,content_replace)
                 content =content+"\n".join([x for x in app_append])+"\n"
                 write_file(file_loc,content)
