@@ -129,7 +129,8 @@ files:
           mv_file: /{{folder_name}}/{{folder_name}}/apphealth/views.tplpy        
     - condition: framework == "django_ninja" && add_new_testfile == "yes"
       dependent:
-        - file: /{{folder_name}}/{{folder_name}}/urls.tplpy
+        - file: project/ninja/urls.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/urls.tplpy
     - condition: docker != "None"
       dependent:
         - file: Dockerfile.tpl
@@ -149,6 +150,8 @@ bootscript:
     command: python scriptload.py setting_app {{folder_name}} graphbox
   - condition: framework == "None"
     command: python scriptload.py setting_app {{folder_name}} default    
+  - condition: framework == "ninja"
+    command: python scriptload.py setting_app {{folder_name}} ninja    
   - condition: database != "None"
     command: python scriptload.py setting_db_app {{folder_name}} default    
   - command: rm -rf scriptload.py

@@ -16,6 +16,11 @@ app_setting_var = {
         "import":[],
         "value":["rest_framework","@package_name.apphealth"],
         "append":[]
+    },
+    "ninja": {
+        "import":[],
+        "value":[],
+        "append":[]
     }
 
 }
