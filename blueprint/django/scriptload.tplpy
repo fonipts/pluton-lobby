@@ -86,6 +86,12 @@ def main():
                 content_replace  = get_replace_install.replace("\n]","\n"+",\n".join([ '    "'+x.replace("@package_name",package_name)+'"' for x in app_value])+"\n]")
                 content  = content.replace(get_replace_install,content_replace)
                 content =content+"\n".join([x for x in app_append])+"\n"
+                if arguments == "drf":
+                    content = content+"""REST_FRAMEWORK = {
+                        'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+                        'PAGE_SIZE': 10
+                    }"""
+
                 write_file(file_loc,content)
 
     if types == "setting_db_app":

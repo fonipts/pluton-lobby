@@ -60,6 +60,7 @@ dependencies:
     - condition: database == "postgres"
       dependent:
         - psycopg[binary,pool]==3.1.14
+        - psycopg2-binary==2.9.9
     - condition: database == "mysql"
       dependent:
         - PyMySQL==1.1.0
@@ -126,7 +127,11 @@ files:
         - file: apphealth/models.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/apphealth/models.tplpy        
         - file: apphealth/views.tplpy
-          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/views.tplpy        
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/views.tplpy
+        - file: apphealth/migrations/__init__.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/migrations/__init__.tplpy  
+        - file: apphealth/migrations/0001_initial.tplpy
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/migrations/0001_initial.tplpy         
     - condition: framework == "django_ninja" && add_new_testfile == "yes"
       dependent:
         - file: project/ninja/urls.tplpy

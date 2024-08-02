@@ -1,7 +1,0 @@
-from django.urls import path
-from .views import snippet_list,snippet_detail
-
-urlpatterns = [
-    path('apptest/', snippet_list),
-    path('apptest/<int:pk>/', snippet_detail),
-]

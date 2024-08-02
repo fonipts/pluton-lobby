@@ -40,6 +40,7 @@ dependencies:
       dependent:
       - SQLAlchemy==2.0.23
       - psycopg[binary,pool]==3.1.14
+      - psycopg2-binary==2.9.9      
     - condition: database == "mysql"
       dependent:
       - SQLAlchemy==2.0.23
