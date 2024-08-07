@@ -5,6 +5,8 @@
 In a browser :
 ```html
 name: bottle
+settings:
+  install_type: pip
 choices:
   - name: name
     question: What is your name
@@ -26,8 +28,10 @@ choices:
     question: Do you want Dockerfile?
     type: single_choice
     option:
-      - "yes"
-      - "no"
+      - "No plan"
+      - "python"
+      - "nginx"
+      - "apache2"
 dependencies:
   default:
   - bottle==0.12.25
@@ -36,6 +40,7 @@ dependencies:
       dependent:
       - SQLAlchemy==2.0.23
       - psycopg[binary,pool]==3.1.14
+      - psycopg2-binary==2.9.9
     - condition: database == "mysql"
       dependent:
       - SQLAlchemy==2.0.23
@@ -53,16 +58,21 @@ script:
     - python main.py
 files:
   default:
-    - file: main.tpl
-    - file: __init__.tpl
+    - file: main.tplpy
+    - file: __init__.tplpy
     - file: README.md
   optional:
     - condition: database != "none"
       dependent:
-      - file: db.tpl
-    - condition: docker == "yes"
+      - file: db.tplpy
+    - condition: docker != "No plan"
       dependent:
-      - file: Dockerfile
+      - file: Dockerfile.tpl
+
+bootscript:
+  - command: pip install -r requirements.txt
+    exec_position: start
+
 
 ```
 ### Group action in yaml architecture
@@ -70,7 +80,9 @@ files:
 |Action type | Description |
 |------------- | ------------- |
 |name | Project name |
+|settings | Project setting details |
 |choices | Executing command using plutonkit |
 |dependencies | Installing packages and to save at requirements.txt |
 |script | command argument that to be save at command.yaml |
 |files | List of files that you will copy in project directory |
+|bootscript | Script you want to run before and after was created |

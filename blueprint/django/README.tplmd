@@ -6,6 +6,7 @@ Your selection of your first python application architecture
         framework == "django_ninja"
     }
     @content{
+     ## Docs access for API   
      You can access the document at http://127.0.0.1:8000/api/docs for localhost
 }   
     @end{}    
@@ -13,7 +14,8 @@ Your selection of your first python application architecture
         framework == "django_rest_framework"
     }
     @content{
-     
+     ## Docs access for API   
+     You can access the document at http://127.0.0.1:8000 for localhost
     }
 
 })

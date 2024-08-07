@@ -1,5 +1,8 @@
 # Functional syntax
 
+## Introduction
+This function syntax will work on `*.tpl{ext file}`
+
 ## Sample syntax
 
 In a browser :
@@ -32,6 +35,8 @@ In a browser :
 
 ```
 
+
+
 ### Group action in yaml architecture
 
 |Action type | Description | Status |
@@ -39,4 +44,4 @@ In a browser :
 |condition | creating your conditional statement | Dev |
 |end       | Else statement in the template | Dev |
 |content   | Content of template function that you want to render | Dev |
-|load      | Load/import the *.tpl file | Pending |
+|load      | Load/import the *.tpl{file extension} file | Pending |
