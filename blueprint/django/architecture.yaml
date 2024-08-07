@@ -87,7 +87,7 @@ script:
       - python manage.py runserver
 files:
   default:
-    - file: README.md
+    - file: README.tplmd
     - file: scriptload.tplpy
   optional:
     - condition: framework == "None" && add_new_testfile == "yes"
