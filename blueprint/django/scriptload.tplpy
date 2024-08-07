@@ -90,7 +90,7 @@ def main():
                     content = content+'''REST_FRAMEWORK = {
                         "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
                         "PAGE_SIZE": 10
-                    }'''
+                    }\n'''
 
                 if arguments in ["drf","ninja"]:
                     content = content+'''CORS_ALLOWED_ORIGINS = [
