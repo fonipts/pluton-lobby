@@ -1,0 +1,19 @@
+# pluton-lobby
+Your selection of your first python application architecture 
+
+({   
+    @condition{
+        framework == "django_ninja"
+    }
+    @content{
+     You can access the document at http://127.0.0.1:8000/api/docs for localhost
+}   
+    @end{}    
+    @condition{
+        framework == "django_rest_framework"
+    }
+    @content{
+     
+    }
+
+})
