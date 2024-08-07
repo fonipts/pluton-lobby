@@ -13,6 +13,8 @@ In a browser :
 {{name|ucfirst}}
 ==
 {{name|replace(e,1)}}
+==
+{{name|if(dev,1)}}
 
 ```
 

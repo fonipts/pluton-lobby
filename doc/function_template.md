@@ -1,7 +1,7 @@
 # Functional syntax
 
 ## Introduction
-This function syntax will work on `*.tpl{ext file}`
+This function syntax will work on `*.tpl{ext file}` otherwise it will be ignore in execution.
 
 ## Sample syntax
 
