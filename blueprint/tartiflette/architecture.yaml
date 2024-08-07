@@ -1,4 +1,6 @@
 name: tartiflette
+settings:
+  install_type: pip
 choices:
   - name: ""
 dependencies:

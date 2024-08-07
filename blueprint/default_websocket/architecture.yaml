@@ -1,4 +1,6 @@
-name: fastapi
+name: websockets
+settings:
+  install_type: pip
 choices:
   - name: ""
 dependencies:

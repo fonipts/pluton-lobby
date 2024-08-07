@@ -1,4 +1,6 @@
 name: ariadne
+settings:
+  install_type: pip
 choices:
   - name: ""
 dependencies:

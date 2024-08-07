@@ -1,4 +1,6 @@
 name: django
+settings:
+  install_type: pip
 choices:
   - name: name
     question: What is your name
@@ -53,10 +55,12 @@ dependencies:
         - djangorestframework==3.14.0
         - markdown==3.5.1
         - django-filter==23.3
+        - django-cors-headers==4.4.0
     - condition: framework == "django_ninja"
       dependent:
         - Django==5.0.7
         - django-ninja==1.2.2
+        - django-cors-headers==4.4.0
     - condition: database == "postgres"
       dependent:
         - psycopg[binary,pool]==3.1.14
@@ -121,9 +125,7 @@ files:
         - file: apphealth/tests.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/apphealth/tests.tplpy        
         - file: apphealth/serializers.tplpy
-          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/serializers.tplpy        
-        - file: apphealth/url.tplpy
-          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/url.tplpy        
+          mv_file: /{{folder_name}}/{{folder_name}}/apphealth/serializers.tplpy
         - file: apphealth/models.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/apphealth/models.tplpy        
         - file: apphealth/views.tplpy

@@ -14,12 +14,12 @@ app_setting_var = {
     },
     "drf": {
         "import":[],
-        "value":["rest_framework","@package_name.apphealth"],
+        "value":["corsheaders","rest_framework","@package_name.apphealth"],
         "append":[]
     },
     "ninja": {
         "import":[],
-        "value":[],
+        "value":["corsheaders"],
         "append":[]
     }
 
@@ -87,10 +87,26 @@ def main():
                 content  = content.replace(get_replace_install,content_replace)
                 content =content+"\n".join([x for x in app_append])+"\n"
                 if arguments == "drf":
-                    content = content+"""REST_FRAMEWORK = {
-                        'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-                        'PAGE_SIZE': 10
-                    }"""
+                    content = content+'''REST_FRAMEWORK = {
+                        "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+                        "PAGE_SIZE": 10
+                    }'''
+
+                if arguments in ["drf","ninja"]:
+                    content = content+'''CORS_ALLOWED_ORIGINS = [
+                        "http://localhost:3000"
+                    ]\n
+                    CSRF_TRUSTED_ORIGINS = [
+                        "http://localhost:3000"
+                    ]\n
+                    CORS_ALLOW_METHODS = (
+                        "DELETE",
+                        "GET",
+                        "OPTIONS",
+                        "PATCH",
+                        "POST",
+                        "PUT",
+                    )'''   
 
                 write_file(file_loc,content)
 

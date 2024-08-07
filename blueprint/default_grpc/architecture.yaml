@@ -1,4 +1,6 @@
 name: grpc_basic
+settings:
+  install_type: pip
 choices:
   - name: name
     question: What is your name

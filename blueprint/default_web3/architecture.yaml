@@ -1,4 +1,6 @@
 name: web3
+settings:
+  install_type: pip
 choices:
   - name: ""
 dependencies:
