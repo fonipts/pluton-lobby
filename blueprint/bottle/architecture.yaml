@@ -59,7 +59,7 @@ files:
     - condition: database != "none"
       dependent:
       - file: db.tplpy
-      - file: .tplenv
+      - file: .env
     - condition: docker != "No plan"
       dependent:
       - file: Dockerfile.tpl

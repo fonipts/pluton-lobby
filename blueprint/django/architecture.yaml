@@ -142,8 +142,8 @@ files:
         - file: Dockerfile.tpl
     - condition: database != "none"
       dependent:
-      - file: .tplenv
-        mv_file: /{{folder_name}}/.tplenv
+      - file: .env
+        mv_file: /{{folder_name}}/.env
 bootscript:
   - command: pip install -r requirements.txt
     exec_position: start

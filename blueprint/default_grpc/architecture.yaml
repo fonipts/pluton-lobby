@@ -77,7 +77,7 @@ files:
     - condition: database != "none"
       dependent:
       - file: server/db.tplpy
-      - file: server/.tplenv
+      - file: server/.env
   optional:
     - condition: docker == "yes"
       dependent:
