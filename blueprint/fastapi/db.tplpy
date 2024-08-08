@@ -1,10 +1,10 @@
 ({   
     
     @content{
-    from decouple import config
-    from sqlalchemy import create_engine
-    from sqlalchemy.orm import declarative_base,sessionmaker
-    from urllib.parse import quote_plus
+from decouple import config
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base,sessionmaker
+from urllib.parse import quote_plus
 
     }
 })
