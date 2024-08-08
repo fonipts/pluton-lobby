@@ -1,6 +1,6 @@
 # Structuring your template
 
-## How to import the Library
+## Sample of code in yaml for setting in architectur.yaml
 
 In a browser :
 ```html
@@ -75,7 +75,7 @@ bootscript:
 
 
 ```
-### Group action in yaml architecture
+### Action in yaml architecture
 
 |Action type | Description |
 |------------- | ------------- |

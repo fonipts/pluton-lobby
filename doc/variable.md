@@ -18,7 +18,7 @@ In a browser :
 
 ```
 
-### Group action in yaml architecture
+### Action you can use in variable syntax
 
 |Action type | Description | Sample| Status |
 |------------- | ------------- |------------- |------------- |

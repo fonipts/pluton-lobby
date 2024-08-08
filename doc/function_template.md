@@ -1,9 +1,11 @@
 # Functional syntax
 
 ## Introduction
-This function syntax will work on `*.tpl{ext file}` otherwise it will be ignore in execution.
+The goal is to have an idea in building function in template and reuse to if you import to different project.
 
+Most of pass value are coming from `choices` at `architecture.yaml`
 ## Sample syntax
+This function syntax will work on `*.tpl{ext file}` otherwise it will be ignore in execution.
 
 In a browser :
 ```html
