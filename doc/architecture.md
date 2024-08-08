@@ -1,6 +1,9 @@
-# Structuring your template
+# Architecture
 
-## Sample of code in yaml for setting in architectur.yaml
+## What is architecture
+It is a set of guidelines that you want or how your project template will function base on our needs in the application, with the help of `architecture.yaml` you define the characteristics of your application before starting for your upcomming project.
+
+## Sample of code in yaml for setting in architecture.yaml
 
 In a browser :
 ```html

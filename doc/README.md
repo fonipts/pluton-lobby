@@ -15,5 +15,9 @@ In image below, you will see the lifecycle in building your project template
 
 As you noticed, we are supporting to have a cmd execution, just to give way in other framework like django that has its own project startup generator, therefore we are sure you are getting the fresh copy from the framework.
 
+## What is blueprint
+As the word suggested, it list structure of files,packages and commad. that will help you. To make your application, dynamic and adjust base on the complexity of your project.
+
 ## Roadmap
 In next release we will add support in other language like nodejs/javascript and golang
+
