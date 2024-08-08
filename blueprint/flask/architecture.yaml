@@ -66,6 +66,9 @@ files:
     - condition: docker != "None"
       dependent:
       - file: Dockerfile.tpl
+    - condition: database != "none"
+      dependent:
+      - file: .tplenv      
     - condition: blueprint == "yes"
       dependent:
       - file: views/__init__.tplpy

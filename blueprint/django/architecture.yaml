@@ -102,7 +102,6 @@ files:
         - file: health/views.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/health/views.tplpy
     - condition: framework == "django_graphbox"
-      mv_folder_name: /{{folder_name}}/{{folder_name}}/
       dependent:
         - file: project/graphbox/urls.tplpy
           mv_file: /{{folder_name}}/{{folder_name}}/urls.tplpy
@@ -141,6 +140,10 @@ files:
     - condition: docker != "None"
       dependent:
         - file: Dockerfile.tpl
+    - condition: database != "none"
+      dependent:
+      - file: .tplenv
+        mv_file: /{{folder_name}}/.tplenv
 bootscript:
   - command: pip install -r requirements.txt
     exec_position: start
