@@ -1,0 +1,80 @@
+name: flask
+settings:
+  install_type: pip
+choices:
+  - name: name
+    question: What is your name
+    type: input
+  - name: database
+    question: What is your Database choice?
+    type: single_choice
+    option:
+      - postgres
+      - mysql
+      - none
+  - name: blueprint
+    question: Do you want to use Blueprint?
+    type: single_choice
+    option:
+      - "yes"
+      - "no"
+  - name: redis
+    question: Do you want Redis?
+    type: single_choice
+    option:
+      - "yes"
+      - "no"      
+  - name: docker
+    question: Do you want Dockerfile?
+    type: single_choice
+    option:
+      - "None"
+      - "python"
+      - "nginx"
+      - "apache2"
+dependencies:
+  default:
+  - Flask==3.0.0
+  optional:
+    - condition: database == "postgres"
+      dependent:
+      - Flask-SQLAlchemy==3.1.1
+      - psycopg[binary,pool]==3.1.14
+      - psycopg2-binary==2.9.9      
+    - condition: database == "mysql"
+      dependent:
+      - Flask-SQLAlchemy==3.1.1
+      - PyMySQL==1.1.0
+    - condition: redis == "yes"
+      dependent:
+      - redis==5.0.4
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  start:
+    description: Run your application
+    command:
+    - flask --app main run
+files:
+  default:
+    - file: main.tplpy
+    - file: __init__.tplpy
+    - file: README.md
+  optional:
+    - condition: docker != "None"
+      dependent:
+      - file: Dockerfile.tpl
+    - condition: database != "none"
+      dependent:
+      - file: .env      
+    - condition: blueprint == "yes"
+      dependent:
+      - file: views/__init__.tplpy
+      - file: views/simple_page.tplpy
+      - file: templates/__init__.tplpy
+bootscript:
+  - command: pip install -r requirements.txt
+    exec_position: start
+

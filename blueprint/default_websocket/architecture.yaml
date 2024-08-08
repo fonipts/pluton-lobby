@@ -1,0 +1,23 @@
+name: websockets
+settings:
+  install_type: pip
+choices:
+  - name: ""
+dependencies:
+  default:
+  - websockets==12.0
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  start:
+    command:
+    - uvicorn main:app
+files:
+  default:
+    - file: main.tplpy
+
+bootscript:
+  - command: pip install -r requirements.txt
+    exec_position: start

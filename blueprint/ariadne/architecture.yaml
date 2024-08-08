@@ -1,0 +1,26 @@
+name: ariadne
+settings:
+  install_type: pip
+choices:
+  - name: ""
+dependencies:
+  default:
+    - ariadne==0.21
+    - uvicorn[standard]==0.24.0
+script:
+  pip_install:
+    description: Install package
+    command:
+    - pip install -r requirements.txt
+  start:
+    command:
+    - uvicorn main:app
+files:
+  default:
+    - file: main.tplpy
+    - file: __init__.tplpy
+    - file: README.md
+bootscript:
+  - command: pip install -r requirements.txt
+    exec_position: start
+
