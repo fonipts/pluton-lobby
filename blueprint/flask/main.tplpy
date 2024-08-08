@@ -20,9 +20,9 @@ app = Flask(__name__)
         database == "postgres"
     }
     @content{
-    db = SQLAlchemy()
-    app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql+psycopg://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_CONNECTION")}/{config("DB_NAME")}'
-    db.init_app(app)
+db = SQLAlchemy()
+app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql+psycopg://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_HOST")}/{config("DB_NAME")}'
+db.init_app(app)
 
     }
     @end{}
@@ -30,9 +30,9 @@ app = Flask(__name__)
         database == "mysql"
     }
     @content{
-    db = SQLAlchemy()
-    app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_CONNECTION")}/{config("DB_NAME")}'
-    db.init_app(app)
+db = SQLAlchemy()
+app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_HOST")}/{config("DB_NAME")}'
+db.init_app(app)
 
     }
 })
@@ -41,7 +41,7 @@ app = Flask(__name__)
         blueprint == "yes"
     }
     @content{
-    app.register_blueprint(simple_page)
+app.register_blueprint(simple_page)
     }
 })
 @app.route("/heath")
