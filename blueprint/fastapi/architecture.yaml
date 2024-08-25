@@ -34,9 +34,8 @@ choices:
       - "apache2"
 dependencies:
   default:
-  - fastapi==0.104.1
+  - fastapi[standard]==0.112.2
   - Pydantic==2.5.2
-  - uvicorn[standard]==0.24.0
   optional:
     - condition: database == "postgres"
       dependent:
@@ -60,16 +59,22 @@ script:
     - pip install -r requirements.txt
   start:
     command:
-    - uvicorn main:app
+    - fastapi dev app/main.py
 files:
   default:
-    - file: main.tplpy
-    - file: __init__.tplpy
+    - file: app/main.tplpy
+    - file: app/__init__.tplpy
+    - file: app/dependencies.tplpy
+    - file: app/internal/__init__.tplpy
+    - file: app/internal/admin.tplpy
+    - file: app/routers/__init__.tplpy
+    - file: app/routers/items.tplpy
+    - file: app/routers/users.tplpy
     - file: README.md
   optional:
     - condition: database != "none"
       dependent:
-      - file: db.tplpy
+      - file: app/db.tplpy
       - file: .env
     - condition: docker != "No plan"
       dependent:
