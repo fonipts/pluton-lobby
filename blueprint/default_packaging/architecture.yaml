@@ -3,9 +3,11 @@ settings:
   install_type: pip
 choices:
   - name: name
-    question: What is your name
+    question: What is your project name
     type: input
-
+  - name: author_name
+    question: What is your author name
+    type: input
 script:
   pip_install:
     description: Install package
@@ -16,5 +18,8 @@ script:
     - python setup.py
 files:
   default:
+    - file: README.md
     - file: setup.tplpy
+    - file: setup.tplcfg
+    - file: "{{name}}/__init__.tplpy"
 

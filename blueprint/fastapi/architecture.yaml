@@ -35,7 +35,6 @@ choices:
 dependencies:
   default:
   - fastapi[standard]==0.112.2
-  - Pydantic==2.5.2
   optional:
     - condition: database == "postgres"
       dependent:
@@ -64,8 +63,8 @@ files:
   default:
     - file: app/main.tplpy
     - file: app/__init__.tplpy
-    - file: app/dependencies.tplpy
-    - file: app/internal/__init__.tplpy
+    - file: app/dependency/dependencies.tplpy
+    - file: app/dependency/__init__.tplpy
     - file: app/internal/admin.tplpy
     - file: app/routers/__init__.tplpy
     - file: app/routers/items.tplpy
