@@ -2,7 +2,7 @@ name: packaging
 settings:
   install_type: pip
 choices:
-  - name: name
+  - name: project_name
     question: What is your project name
     type: input
   - name: author_name
@@ -10,16 +10,17 @@ choices:
     type: input
 script:
   pip_install:
-    description: Install package
+    description: Install requirement package in your application
     command:
     - pip install -r requirements.txt
-  start:
+  install:
+    description: Install your application local
     command:
-    - python setup.py
+    - python setup.py install
 files:
   default:
     - file: README.md
     - file: setup.tplpy
     - file: setup.tplcfg
-    - file: "{{name}}/__init__.tplpy"
+    - file: "{{project_name}}/__init__.tplpy"
 
