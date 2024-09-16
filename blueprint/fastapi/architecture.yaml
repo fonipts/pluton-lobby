@@ -63,17 +63,29 @@ files:
   default:
     - file: app/main.tplpy
     - file: app/__init__.tplpy
-    - file: app/dependency/dependencies.tplpy
+    - file: app/helper/__init__.tplpy
+    - file: app/model/__init__.tplpy
+    - file: app/dependency/header.tplpy
     - file: app/dependency/__init__.tplpy
     - file: app/routers/__init__.tplpy
     - file: app/routers/items.tplpy
     - file: app/routers/users.tplpy
     - file: README.md
   optional:
+    - condition: pydantic_choice == "yes"
+      dependent:
+      - file: app/model/serialize/__init__.tplpy
     - condition: database != "none"
       dependent:
       - file: app/dependency/db.tplpy
-      - file: .env
+      - file: app/model/db/__init__.tplpy
+      - file: app/helper/db.tplpy
+      - file: .env  
+    - condition: redis == "yes"
+      dependent:
+      - file: app/dependency/db.tplpy
+      - file: app/helper/db.tplpy
+      - file: .env      
     - condition: docker != "No plan"
       dependent:
       - file: Dockerfile.tpl

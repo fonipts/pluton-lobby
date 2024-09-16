@@ -1,38 +1,38 @@
 ({   
-    
+    @condition{
+        redis == "yes"
+    }
     @content{
-from decouple import config
-from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base,sessionmaker
-from urllib.parse import quote_plus
+    import redis
+    }
+    @end{}
+    @condition{
+        database != "none"
+    }
+    @content{
+     from ..helper.db import session
 
     }
+    
 })
 
 
 ({   
     @condition{
-        database == "postgres"
+        redis == "yes"
     }
     @content{
-    engine = create_engine(f'postgresql+psycopg://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_CONNECTION")}/{config("DB_NAME")}')
-    conn = engine.connect()
-    Base = declarative_base()
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
+    def redis_connect()->Any:
+        return redis.Redis(host="localhost", port=6379, decode_responses=True)
     }
     @end{}
     @condition{
-        database == "mysql"
+        database != "none"
     }
     @content{
-    engine = create_engine(f'mysql://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_CONNECTION")}/{config("DB_NAME")}')
-    conn = engine.connect()
-    Base = declarative_base()
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    def database_connect()->Any:
+        return session
 
     }
+    
 })
-

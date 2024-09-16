@@ -1,6 +1,6 @@
 from fastapi import Depends, FastAPI
 
-from .dependencies import get_query_token, get_token_header
+from .dependency.header import get_query_token, get_token_header
 from .routers import items, users
 
 app = FastAPI(dependencies=[Depends(get_query_token)])
@@ -16,6 +16,6 @@ app.include_router(
 )
 
 
-@app.get("/")
+@app.get("/health")
 async def root():
-    return {"message": "Hello Bigger Applications!"}
+    return {"message": "Your application is working"}
