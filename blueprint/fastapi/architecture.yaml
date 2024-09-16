@@ -75,17 +75,12 @@ files:
     - condition: pydantic_choice == "yes"
       dependent:
       - file: app/model/serialize/__init__.tplpy
-    - condition: database != "none"
+    - condition: database != "none" || redis == "yes"
       dependent:
       - file: app/dependency/db.tplpy
       - file: app/model/db/__init__.tplpy
       - file: app/helper/db.tplpy
-      - file: .env  
-    - condition: redis == "yes"
-      dependent:
-      - file: app/dependency/db.tplpy
-      - file: app/helper/db.tplpy
-      - file: .env      
+      - file: .env     
     - condition: docker != "No plan"
       dependent:
       - file: Dockerfile.tpl
