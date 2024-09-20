@@ -17,6 +17,3 @@ app.include_router(
     dependencies=[Depends(auth_token_header)],
     responses={418: {"description": "I'm a teapot"}},
 )
-
-
-

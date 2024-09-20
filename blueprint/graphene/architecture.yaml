@@ -6,6 +6,7 @@ choices:
 dependencies:
   default:
   - graphene==3.3
+  - plutonkit
 script:
   pip_install:
     description: Install package

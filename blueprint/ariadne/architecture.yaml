@@ -7,6 +7,7 @@ dependencies:
   default:
     - ariadne==0.21
     - uvicorn[standard]==0.24.0
+    - plutonkit
 script:
   pip_install:
     description: Install package

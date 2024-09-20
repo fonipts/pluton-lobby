@@ -41,6 +41,8 @@ choices:
       - "nginx"
       - "apache2"
 dependencies:
+  default:
+  - plutonkit
   optional:
     - condition: framework == "None"
       dependent:

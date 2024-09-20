@@ -6,6 +6,7 @@ choices:
 dependencies:
   default:
   - web3==6.13.0
+  - plutonkit
 script:
   pip_install:
     description: Install package

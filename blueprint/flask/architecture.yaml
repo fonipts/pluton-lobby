@@ -35,6 +35,7 @@ choices:
 dependencies:
   default:
   - Flask==3.0.0
+  - plutonkit
   optional:
     - condition: database == "postgres"
       dependent:

@@ -29,6 +29,7 @@ choices:
 dependencies:
   default:
   - bottle==0.12.25
+  - plutonkit
   optional:
     - condition: database == "postgres"
       dependent:

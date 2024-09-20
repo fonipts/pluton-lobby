@@ -15,7 +15,7 @@ from urllib.parse import quote_plus
         database == "postgres"
     }
     @content{
-    engine = create_engine(f'postgresql+psycopg://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_CONNECTION")}/{config("DB_NAME")}')
+    engine = create_engine(f'postgresql+psycopg://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_HOST")}/{config("DB_NAME")}')
     conn = engine.connect()
     Base = declarative_base()
     Session = sessionmaker(bind=engine)
@@ -27,7 +27,7 @@ from urllib.parse import quote_plus
         database == "mysql"
     }
     @content{
-    engine = create_engine(f'mysql://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_CONNECTION")}/{config("DB_NAME")}')
+    engine = create_engine(f'mysql://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_HOST")}/{config("DB_NAME")}')
     conn = engine.connect()
     Base = declarative_base()
     Session = sessionmaker(bind=engine)

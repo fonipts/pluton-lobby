@@ -35,6 +35,7 @@ choices:
 dependencies:
   default:
   - fastapi[standard]==0.112.2
+  - plutonkit
   optional:
     - condition: database == "postgres"
       dependent:
