@@ -1,0 +1,29 @@
+name: packaging
+settings:
+  install_type: go
+choices:
+  - name: project_name
+    question: What is your project name
+    type: input
+  - name: author_name
+    question: What is your author name
+    type: input
+  - name: repo_name
+    question: What is your repository name
+    type: input  
+script:
+  go_build:
+    description: Build main appi
+    command:
+    - go build main.go
+  go_run:
+    description: Build main appi
+    command:
+    - ./main
+
+files:
+  default:
+    - file: README.md
+    - file: go.tplmod
+    - file: main.tplgo
+
