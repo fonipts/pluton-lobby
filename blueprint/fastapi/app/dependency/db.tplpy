@@ -25,7 +25,9 @@ from typing import Any
     def redis_connect()->Any:
         return redis.Redis(host="localhost", port=6379, decode_responses=True)
     }
-    @end{}
+
+})
+({   
     @condition{
         database != "none"
     }
@@ -34,5 +36,5 @@ from typing import Any
         return session
 
     }
-    
+
 })
