@@ -11,10 +11,7 @@
         database != "none"
     }
     @content{
-
-
-     from ..helper.db import session
-
+from ..helper.db import session
     }
     
 })
