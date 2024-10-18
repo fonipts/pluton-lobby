@@ -38,7 +38,6 @@ In a browser :
 ```
 
 
-
 ### Group action in yaml architecture
 
 |Action type | Description | Status |

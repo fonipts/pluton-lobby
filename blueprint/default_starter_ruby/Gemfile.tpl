@@ -1,3 +1,4 @@
-module {{repo_name}}
+source 'https://rubygems.org'
 
-go 1.22.5
+gem 'rubocop'
+gem 'test-unit'
