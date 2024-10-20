@@ -1,0 +1,3 @@
+module {{repo_name}}
+
+go 1.22.5

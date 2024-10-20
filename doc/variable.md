@@ -20,10 +20,10 @@ In a browser :
 
 ### Action you can use in variable syntax
 
-|Action type | Description | Sample| Status |
+|Action type | Description | Example| Status |
 |------------- | ------------- |------------- |------------- |
-|ucfirst | Upper case first string | Dev | Dev |
-|lower | Lower case string | Dev| Dev |
-|upper | Upper case string | Dev| Dev |
-|replace | Replace string | Dev| Dev |
-|if | If statement string | Dev | Dev |
+|ucfirst | Upper case first string | {{name|ucfirst}} | Dev |
+|lower | Lower case string | {{name|lower}}| Dev |
+|upper | Upper case string | {{name|upper}}| Dev |
+|replace | Replace string | {{name|replace(e,1)}}| Dev |
+|if | If statement string | {{name|if(dev,1)}} | Dev |

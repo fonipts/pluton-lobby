@@ -38,7 +38,6 @@ In a browser :
 ```
 
 
-
 ### Group action in yaml architecture
 
 |Action type | Description | Status |
@@ -46,4 +45,5 @@ In a browser :
 |condition | creating your conditional statement | Dev |
 |end       | Else statement in the template | Dev |
 |content   | Content of template function that you want to render | Dev |
-|load      | Load/import the *.tpl{file extension} file | Pending |
+|load      | Load/import the *.tpl{file extension} file | Dev |
+|script    | Execute python script in your template, please note content was used to render the output string in template | Dev |

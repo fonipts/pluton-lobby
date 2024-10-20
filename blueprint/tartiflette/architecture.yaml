@@ -6,6 +6,7 @@ choices:
 dependencies:
   default:
   - tartiflette-aiohttp==1.4.0
+  - plutonkit
 script:
   pip_install:
     description: Install package

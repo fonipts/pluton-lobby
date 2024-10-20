@@ -1,0 +1,43 @@
+({   
+    @condition{
+        redis == "yes"
+    }
+    @content{
+    import redis
+    from decouple import config
+    }
+    @end{}
+    @condition{
+        database != "none"
+    }
+    @content{
+from ..helper.db import session
+    }
+    
+})
+from typing import Any
+
+({   
+    @condition{
+        redis == "yes"
+    }
+    @content{
+    def redis_connect()->Any:
+        return redis.Redis(host=config("REDIS_HOST"), port=config("REDIS_PORT"), decode_responses=True)
+    }
+
+})
+
+
+
+({   
+    @condition{
+        database != "none"
+    }
+    @content{
+    def database_connect()->Any:
+        return session
+
+    }
+
+})
