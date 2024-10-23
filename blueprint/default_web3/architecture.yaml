@@ -2,11 +2,9 @@ name: web3
 settings:
   install_type: pip
 choices:
-  - name: ""
-dependencies:
-  default:
-  - web3==6.13.0
-  - plutonkit
+  - name: project_name
+    question: What is your project name
+    type: input
 script:
   pip_install:
     description: Install package
@@ -18,6 +16,7 @@ script:
 files:
   default:
     - file: main.tplpy
+    - file: requirements.tpltxt
     - file: __init__.tplpy
 
 bootscript:

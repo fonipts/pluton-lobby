@@ -32,26 +32,6 @@ choices:
       - "python"
       - "nginx"
       - "apache2"
-dependencies:
-  default:
-  - fastapi[standard]==0.112.2
-  - plutonkit
-  optional:
-    - condition: database == "postgres"
-      dependent:
-      - SQLAlchemy==2.0.23
-      - psycopg[binary,pool]==3.1.14
-      - psycopg2-binary==2.9.9      
-    - condition: database == "mysql"
-      dependent:
-      - SQLAlchemy==2.0.23
-      - PyMySQL==1.1.0
-    - condition: redis == "yes"
-      dependent:
-      - redis==5.0.4  
-    - condition: pydantic_choice == "yes"
-      dependent:
-      - pydantic==2.8
 script:
   pip_install:
     description: Install package
@@ -68,6 +48,7 @@ files:
     - file: app/model/__init__.tplpy
     - file: app/dependency/header.tplpy
     - file: app/dependency/__init__.tplpy
+    - file: requirements.tpltxt
     - file: app/routers/__init__.tplpy
     - file: app/routers/items.tplpy
     - file: app/routers/users.tplpy

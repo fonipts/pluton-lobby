@@ -30,24 +30,6 @@ choices:
     option:
       - "yes"
       - "no"
-dependencies:
-  default:
-  - grpcio-tools==1.59.2
-  - grpcio==1.59.2
-  - plutonkit
-  optional:
-    - condition: database == "postgres"
-      dependent:
-      - SQLAlchemy==2.0.23
-      - psycopg[binary,pool]==3.1.14
-      - psycopg2-binary==2.9.9      
-    - condition: database == "mysql"
-      dependent:
-      - SQLAlchemy==2.0.23
-      - PyMySQL==1.1.0
-    - condition: redis == "yes"
-      dependent:
-      - redis==5.0.4  
 script:
   docker_build:
     command:
@@ -66,6 +48,7 @@ script:
     - python -m grpc_tools.protoc -I./protobufs --python_out=./server/proto   --grpc_python_out=./server/proto ./protobufs/auth.proto
 files:
   default:
+    - file: requirements.tpltxt
     - file: server/main.tplpy
     - file: server/settings.tplpy
     - file: server/model/__init__.tplpy

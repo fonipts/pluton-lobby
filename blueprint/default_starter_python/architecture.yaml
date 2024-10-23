@@ -19,6 +19,7 @@ script:
     - python setup.py install
 files:
   default:
+    - file: requirements.tpltxt
     - file: README.md
     - file: setup.tplpy
     - file: setup.tplcfg

@@ -3,10 +3,6 @@ settings:
   install_type: pip
 choices:
   - name: ""
-dependencies:
-  default:
-  - graphene==3.3
-  - plutonkit
 script:
   pip_install:
     description: Install package
@@ -19,6 +15,7 @@ files:
   default:
     - file: main.tplpy
     - file: __init__.tplpy
+    - file: requirements.tpltxt
 bootscript:
   - command: pip install -r requirements.txt
     exec_position: start

@@ -3,11 +3,6 @@ settings:
   install_type: pip
 choices:
   - name: ""
-dependencies:
-  default:
-    - ariadne==0.21
-    - uvicorn[standard]==0.24.0
-    - plutonkit
 script:
   pip_install:
     description: Install package
@@ -18,6 +13,7 @@ script:
     - uvicorn main:app
 files:
   default:
+    - file: requirements.tpltxt
     - file: main.tplpy
     - file: __init__.tplpy
     - file: README.md

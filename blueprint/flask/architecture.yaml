@@ -32,23 +32,6 @@ choices:
       - "python"
       - "nginx"
       - "apache2"
-dependencies:
-  default:
-  - Flask==3.0.0
-  - plutonkit
-  optional:
-    - condition: database == "postgres"
-      dependent:
-      - Flask-SQLAlchemy==3.1.1
-      - psycopg[binary,pool]==3.1.14
-      - psycopg2-binary==2.9.9      
-    - condition: database == "mysql"
-      dependent:
-      - Flask-SQLAlchemy==3.1.1
-      - PyMySQL==1.1.0
-    - condition: redis == "yes"
-      dependent:
-      - redis==5.0.4
 script:
   pip_install:
     description: Install package
@@ -62,6 +45,7 @@ files:
   default:
     - file: main.tplpy
     - file: __init__.tplpy
+    - file: requirements.tpltxt
     - file: README.md
   optional:
     - condition: docker != "None"

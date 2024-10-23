@@ -20,7 +20,6 @@ script:
     description: Build main appi
     command:
     - ./main
-
 files:
   default:
     - file: README.md
