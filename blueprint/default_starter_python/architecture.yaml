@@ -20,6 +20,7 @@ script:
 files:
   default:
     - file: requirements.tpltxt
+      exec_position: start
     - file: README.md
     - file: setup.tplpy
     - file: setup.tplcfg

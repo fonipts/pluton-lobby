@@ -42,13 +42,14 @@ script:
     - fastapi dev app/main.py
 files:
   default:
+    - file: requirements.tpltxt
+      exec_position: start
     - file: app/main.tplpy
     - file: app/__init__.tplpy
     - file: app/helper/__init__.tplpy
     - file: app/model/__init__.tplpy
     - file: app/dependency/header.tplpy
     - file: app/dependency/__init__.tplpy
-    - file: requirements.tpltxt
     - file: app/routers/__init__.tplpy
     - file: app/routers/items.tplpy
     - file: app/routers/users.tplpy

@@ -48,7 +48,8 @@ script:
     - python -m grpc_tools.protoc -I./protobufs --python_out=./server/proto   --grpc_python_out=./server/proto ./protobufs/auth.proto
 files:
   default:
-    - file: requirements.tpltxt
+    - file: requirements.
+      exec_position: start
     - file: server/main.tplpy
     - file: server/settings.tplpy
     - file: server/model/__init__.tplpy

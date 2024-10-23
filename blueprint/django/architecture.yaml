@@ -57,6 +57,7 @@ script:
 files:
   default:
     - file: requirements.tpltxt
+      exec_position: start
     - file: README.tplmd
     - file: scriptload.tplpy
   optional:

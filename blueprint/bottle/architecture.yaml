@@ -37,6 +37,7 @@ script:
 files:
   default:
     - file: requirements.tpltxt
+      exec_position: start
     - file: main.tplpy
     - file: __init__.tplpy
     - file: README.md

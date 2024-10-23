@@ -46,6 +46,7 @@ files:
     - file: main.tplpy
     - file: __init__.tplpy
     - file: requirements.tpltxt
+      exec_position: start
     - file: README.md
   optional:
     - condition: docker != "None"
