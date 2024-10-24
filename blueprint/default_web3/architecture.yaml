@@ -17,9 +17,7 @@ files:
   default:
     - file: main.tplpy
     - file: requirements.tpltxt
-      exec_position: start
     - file: __init__.tplpy
 
 bootscript:
   - command: pip install -r requirements.txt
-    exec_position: start

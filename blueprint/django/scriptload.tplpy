@@ -33,14 +33,14 @@ DATABASE_RAW = '''
     }
     @content{
     DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": quote_plus(config("DB_PASSWORD")),
-        "HOST": config("DB_HOST"),
-        "PORT": config("DB_PORT")
-        }
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": config("DB_NAME"),
+            "USER": config("DB_USER"),
+            "PASSWORD": quote_plus(config("DB_PASSWORD")),
+            "HOST": config("DB_HOST"),
+            "PORT": config("DB_PORT")
+            }
     }
 }   
     @end{}    
@@ -49,16 +49,46 @@ DATABASE_RAW = '''
     }
     @content{
     DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": quote_plus(config("DB_PASSWORD")),
-        "HOST": config("DB_HOST"),
-        "PORT": config("DB_PORT")
-    }
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": config("DB_NAME"),
+            "USER": config("DB_USER"),
+            "PASSWORD": quote_plus(config("DB_PASSWORD")),
+            "HOST": config("DB_HOST"),
+            "PORT": config("DB_PORT")
+        }
 }
     }
+
+})
+'''
+
+CACHES_RAW = '''
+({   
+    @condition{
+        redis == "yes"
+    }
+    @content{
+
+    # Redis cache configuration
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+            'LOCATION': 'my_cache_table',
+        },
+        'redis': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': 'redis://127.0.0.1:6379/',  # Replace with your Redis server info
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            }
+        }
+    }
+
+    # Use the Redis cache as the default cache
+    CACHES['default'] = CACHES['redis']
+
+}
 
 })
 '''
@@ -72,7 +102,7 @@ def main():
 
     if types == "setting_app":
         file_loc = os.path.join(
-                directory, package_name,package_name, "settings.py"
+                directory, package_name, "settings.py"
             )
         app_import = app_setting_var[arguments]["import"]
         app_value = app_setting_var[arguments]["value"]
@@ -114,7 +144,7 @@ CORS_ALLOW_METHODS = (
 
     if types == "setting_db_app":
         file_loc = os.path.join(
-                directory, package_name,package_name, "settings.py"
+                directory, package_name, "settings.py"
             )
         with open(file_loc,"r") as read_file:
             content  =read_file.read()
@@ -127,6 +157,16 @@ from urllib.parse import quote_plus\n\n
 """+content
                 content  = content.replace(get_replace_install,DATABASE_RAW)
                 write_file(file_loc,content)
+
+    if types == "setting_cache_app":
+        file_loc = os.path.join(
+                directory, package_name, "settings.py"
+            )
+        with open(file_loc,"r") as read_file:
+            content  =read_file.read()
+            
+            content  = content+CACHES_RAW
+            write_file(file_loc,content)                
 
 def write_file(file,content):
     with open(file, "w", encoding="utf-8") as f_write:

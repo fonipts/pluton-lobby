@@ -43,7 +43,6 @@ script:
 files:
   default:
     - file: requirements.tpltxt
-      exec_position: start
     - file: app/main.tplpy
     - file: app/__init__.tplpy
     - file: app/helper/__init__.tplpy
@@ -69,4 +68,3 @@ files:
       - file: Dockerfile.tpl
 bootscript:
   - command: pip install -r requirements.txt
-    exec_position: start

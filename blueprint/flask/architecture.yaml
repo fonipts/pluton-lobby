@@ -46,7 +46,6 @@ files:
     - file: main.tplpy
     - file: __init__.tplpy
     - file: requirements.tpltxt
-      exec_position: start
     - file: README.md
   optional:
     - condition: docker != "None"
@@ -62,5 +61,3 @@ files:
       - file: templates/__init__.tplpy
 bootscript:
   - command: pip install -r requirements.txt
-    exec_position: start
-
