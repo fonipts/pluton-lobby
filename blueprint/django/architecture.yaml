@@ -1,10 +1,16 @@
 name: django
-settings:
-  install_type: pip
 choices:
   - name: name
     question: What is your name
     type: input
+  - name: py_install
+    question: What package installer do you want to use?
+    type: single_choice
+    default: pip
+    option:
+      - pip
+      - pip2
+      - pip3    
   - name: database
     question: What is your Database choice?
     type: single_choice
@@ -44,7 +50,7 @@ script:
   pip_install:
     description: Install package
     command:
-      - pip install -r requirements.txt
+      - "{{py_install}} install -r requirements.txt"
   makemigrate:
     command:
       - python manage.py makemigrations
@@ -116,7 +122,7 @@ files:
       - file: .env
         mv_file: /{{folder_name}}_clone/.env
 bootscript:
-  - command: pip install -r requirements.txt
+  - command: "{{py_install}} install -r requirements.txt"
   - command: django-admin startproject {{folder_name}}
   - command: mkdir copy_folder
   - command: cp -R {{folder_name}}/* copy_folder
@@ -125,8 +131,8 @@ bootscript:
   - command: rm -rf {{folder_name}}
   - command: rm -rf {{folder_name}}_clone
   - command: cp -R copy_folder/{{folder_name}} *
-  - command: cp -R copy_folder/* .
-  - command: cp -R copy_folder/. .
+  - command: cp -R copy_folder/* . 2>/dev/null
+  - command: cp -R copy_folder/. . 2>/dev/null
   - command: rm -rf copy_folder
   - condition: framework == "django_rest_framework"
     command: python scriptload.py setting_app {{folder_name}} drf
@@ -136,6 +142,6 @@ bootscript:
     command: python scriptload.py setting_app {{folder_name}} default    
   - condition: database != "none"
     command: python scriptload.py setting_db_app {{folder_name}} default
-  - condition: redis != "yes"
+  - condition: redis == "yes"
     command: python scriptload.py setting_cache_app {{folder_name}} default        
   - command: rm -rf scriptload.py

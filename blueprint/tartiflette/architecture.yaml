@@ -2,12 +2,19 @@ name: tartiflette
 settings:
   install_type: pip
 choices:
-  - name: ""
+  - name: py_install
+    question: What package installer do you want to use?
+    type: single_choice
+    default: pip
+    option:
+      - pip
+      - pip2
+      - pip3
 script:
   pip_install:
     description: Install package
     command:
-    - pip install -r requirements.txt
+    - "{{py_install}} install -r requirements.txt"
   start:
     command:
     - python main.py
@@ -17,4 +24,4 @@ files:
     - file: __init__.tplpy
     - file: requirements.tpltxt
 bootscript:
-  - command: pip install -r requirements.txt
+  - command: "{{py_install}} install -r requirements.txt"
