@@ -63,7 +63,9 @@ script:
 files:
   default:
     - file: requirements.tpltxt
+      mv_file: /{{folder_name}}_clone/requirements.tpltxt
     - file: README.tplmd
+      mv_file: /{{folder_name}}_clone/README.tplmd
     - file: scriptload.tplpy
       mv_file: /{{folder_name}}_clone/scriptload.tplpy
   optional:
@@ -123,6 +125,7 @@ files:
         mv_file: /{{folder_name}}_clone/.env
 bootscript:
   - command: "{{py_install}} install -r requirements.txt"
+    chdir: "{{folder_name}}_clone/"
   - command: django-admin startproject {{folder_name}}
   - command: mkdir copy_folder
   - command: cp -R {{folder_name}}/* copy_folder
