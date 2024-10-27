@@ -63,66 +63,65 @@ script:
 files:
   default:
     - file: requirements.tpltxt
-      mv_file: /{{folder_name}}_clone/requirements.tpltxt
+      mv: /{{folder_name}}_clone
     - file: README.tplmd
-      mv_file: /{{folder_name}}_clone/README.tplmd
+      mv: /{{folder_name}}_clone/
     - file: scriptload.tplpy
-      mv_file: /{{folder_name}}_clone/scriptload.tplpy
+      mv: /{{folder_name}}_clone/
   optional:
     - condition: framework == "None" && add_new_testfile == "yes"
-      mv_folder_name: /{{folder_name}}_clone/{{folder_name}}/
       dependent:
         - file: health/__init__.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/health/__init__.tplpy
+          mv: /{{folder_name}}_clone/{{folder_name}}/health
         - file: project/default/urls.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/urls.tplpy
+          mv: /{{folder_name}}_clone/{{folder_name}}
         - file: health/tests.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/health/tests.tplpy
+          mv: /{{folder_name}}_clone/{{folder_name}}/health
         - file: health/views.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/health/views.tplpy
+          mv: /{{folder_name}}_clone/{{folder_name}}/health
     - condition: framework == "django_graphbox"
       dependent:
         - file: project/graphbox/urls.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/urls.tplpy
+          mv: /{{folder_name}}_clone/{{folder_name}}
         - file: graph_schema/myapp/__init__.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myapp/__init__.tplpy          
+          mv: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myapp
         - file: graph_schema/myapp/models.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myapp/models.tplpy          
+          mv: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myapp          
         - file: graph_schema/myapp/schema.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myapp/schema.tplpy          
+          mv: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myapp
         - file: graph_schema/myproject/__init__.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myproject/__init__.tplpy          
+          mv: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myproject
         - file: graph_schema/myproject/schema.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myproject/schema.tplpy          
+          mv: /{{folder_name}}_clone/{{folder_name}}/graph_schema/myproject          
     - condition: framework == "django_rest_framework" && add_new_testfile == "yes"
       dependent:
         - file: project/drf/urls.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/urls.tplpy
+          mv: /{{folder_name}}_clone/{{folder_name}}
         - file: apphealth/__init__.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/apphealth/__init__.tplpy        
+          mv: /{{folder_name}}_clone/{{folder_name}}/apphealth     
         - file: apphealth/tests.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/apphealth/tests.tplpy        
+          mv: /{{folder_name}}_clone/{{folder_name}}/apphealth 
         - file: apphealth/serializers.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/apphealth/serializers.tplpy
+          mv: /{{folder_name}}_clone/{{folder_name}}/apphealth
         - file: apphealth/models.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/apphealth/models.tplpy        
+          mv: /{{folder_name}}_clone/{{folder_name}}/apphealth      
         - file: apphealth/views.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/apphealth/views.tplpy
+          mv: /{{folder_name}}_clone/{{folder_name}}/apphealth
         - file: apphealth/migrations/__init__.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/apphealth/migrations/__init__.tplpy  
+          mv: /{{folder_name}}_clone/{{folder_name}}/apphealth/migrations
         - file: apphealth/migrations/0001_initial.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/apphealth/migrations/0001_initial.tplpy         
+          mv: /{{folder_name}}_clone/{{folder_name}}/apphealth/migrations  
     - condition: framework == "django_ninja" && add_new_testfile == "yes"
       dependent:
         - file: project/ninja/urls.tplpy
-          mv_file: /{{folder_name}}_clone/{{folder_name}}/urls.tplpy
+          mv: /{{folder_name}}_clone/{{folder_name}}
     - condition: docker != "None"
       dependent:
         - file: Dockerfile.tpl
     - condition: database != "none"
       dependent:
-      - file: .env
-        mv_file: /{{folder_name}}_clone/.env
+      - file: .tplenv
+        mv: /{{folder_name}}_clone
 bootscript:
   - command: "{{py_install}} install -r requirements.txt"
     chdir: "{{folder_name}}_clone/"
