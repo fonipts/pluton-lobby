@@ -1,0 +1,30 @@
+Flask==3.0.0
+({ 
+    @condition{
+        database == "postgres"
+    }
+    @content{
+
+    Flask-SQLAlchemy==3.1.1
+    psycopg[binary,pool]==3.1.14
+    psycopg2-binary==2.9.9
+    
+    }
+    @condition{
+        database == "mysql"
+    }
+    @content{
+
+    Flask-SQLAlchemy==3.1.1
+    PyMySQL==1.1.0
+    
+    }
+})
+({ 
+    @condition{
+        redis == "yes"
+    }
+    @content{
+    redis==5.0.4    
+    }
+})

@@ -1,27 +1,26 @@
 name: ariadne
-settings:
-  install_type: pip
 choices:
-  - name: ""
-dependencies:
-  default:
-    - ariadne==0.21
-    - uvicorn[standard]==0.24.0
-    - plutonkit
+  - name: py_install
+    question: What package installer do you want to use?
+    type: single_choice
+    default: pip
+    option:
+      - pip
+      - pip2
+      - pip3
 script:
   pip_install:
     description: Install package
     command:
-    - pip install -r requirements.txt
+    - "{{py_install}} install -r requirements.txt"
   start:
     command:
     - uvicorn main:app
 files:
   default:
+    - file: requirements.tpltxt
     - file: main.tplpy
     - file: __init__.tplpy
     - file: README.md
 bootscript:
-  - command: pip install -r requirements.txt
-    exec_position: start
-
+  - command: "{{py_install}} install -r requirements.txt"

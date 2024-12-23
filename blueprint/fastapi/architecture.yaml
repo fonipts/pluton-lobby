@@ -1,10 +1,16 @@
 name: fastapi
-settings:
-  install_type: pip
 choices:
   - name: name
     question: What is your name
     type: input
+  - name: py_install
+    question: What package installer do you want to use?
+    type: single_choice
+    default: pip
+    option:
+      - pip
+      - pip2
+      - pip3    
   - name: database
     question: What is your Database choice?
     type: single_choice
@@ -32,36 +38,17 @@ choices:
       - "python"
       - "nginx"
       - "apache2"
-dependencies:
-  default:
-  - fastapi[standard]==0.112.2
-  - plutonkit
-  optional:
-    - condition: database == "postgres"
-      dependent:
-      - SQLAlchemy==2.0.23
-      - psycopg[binary,pool]==3.1.14
-      - psycopg2-binary==2.9.9      
-    - condition: database == "mysql"
-      dependent:
-      - SQLAlchemy==2.0.23
-      - PyMySQL==1.1.0
-    - condition: redis == "yes"
-      dependent:
-      - redis==5.0.4  
-    - condition: pydantic_choice == "yes"
-      dependent:
-      - pydantic==2.8
 script:
   pip_install:
     description: Install package
     command:
-    - pip install -r requirements.txt
+    - "{{py_install}} install -r requirements.txt"
   start:
     command:
     - fastapi dev app/main.py
 files:
   default:
+    - file: requirements.tpltxt
     - file: app/main.tplpy
     - file: app/__init__.tplpy
     - file: app/helper/__init__.tplpy
@@ -86,5 +73,4 @@ files:
       dependent:
       - file: Dockerfile.tpl
 bootscript:
-  - command: pip install -r requirements.txt
-    exec_position: start
+  - command: "{{py_install}} install -r requirements.txt"

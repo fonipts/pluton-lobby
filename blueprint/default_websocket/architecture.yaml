@@ -1,12 +1,17 @@
 name: websockets
-settings:
-  install_type: pip
+
 choices:
-  - name: ""
-dependencies:
-  default:
-  - websockets==12.0
-  - plutonkit
+  - name: project_name
+    question: What is your project name
+    type: input
+  - name: py_install
+    question: What package installer do you want to use?
+    type: single_choice
+    default: pip
+    option:
+      - pip
+      - pip2
+      - pip3
 script:
   pip_install:
     description: Install package
@@ -17,8 +22,7 @@ script:
     - uvicorn main:app
 files:
   default:
-    - file: main.tplpy
-
+    - file: main.
+    - file: requirements.tpltxt
 bootscript:
   - command: pip install -r requirements.txt
-    exec_position: start

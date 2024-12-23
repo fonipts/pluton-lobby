@@ -74,7 +74,6 @@ files:
 
 bootscript:
   - command: pip install -r requirements.txt
-    exec_position: start
 
 
 ```

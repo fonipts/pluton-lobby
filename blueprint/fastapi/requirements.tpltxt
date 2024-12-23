@@ -1,0 +1,38 @@
+fastapi[standard]==0.112.2
+({ 
+    @condition{
+        pydantic_choice == "yes"
+    }
+    @content{
+        pydantic==2.8
+    }
+})
+({ 
+    @condition{
+        database == "postgres"
+    }
+    @content{
+
+    SQLAlchemy==2.0.23
+    psycopg[binary,pool]==3.1.14
+    psycopg2-binary==2.9.9
+    
+    }
+    @condition{
+        database == "mysql"
+    }
+    @content{
+
+    SQLAlchemy==2.0.23
+    PyMySQL==1.1.0
+    
+    }
+})
+({ 
+    @condition{
+        redis == "yes"
+    }
+    @content{
+    redis==5.0.4    
+    }
+})
