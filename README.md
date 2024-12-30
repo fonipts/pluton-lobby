@@ -9,4 +9,4 @@ These are the repository for available framework that you can use in python, but
 
 With this structure of code you can create your own blueprint, check our  documentation for creating your own blueprint at `blueprint`, and  the `doc` folder for guidelines.
 
-[release-image]: https://img.shields.io/badge/plutonlobby-1.0.31alpha1-brightgreen
+[release-image]: https://img.shields.io/badge/plutonlobby-1.0.32alpha1-brightgreen
