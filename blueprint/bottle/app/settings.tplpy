@@ -1,3 +1,10 @@
+from app.views.home import home_app
+
+routes = [
+	{"url":"/","view_class":home_app}
+]
+
+
 ({   
     
     @content{
@@ -25,7 +32,17 @@ from urllib.parse import quote_plus
     engine = create_engine(f'mysql://{config("DB_USER")}:{quote_plus(config("DB_PASSWORD"))}@{config("DB_HOST")}/{config("DB_NAME")}')
     }
 })
-conn = engine.connect()
-Base = declarative_base()
-Session = sessionmaker(bind=engine)
-session = Session()
+
+
+({   
+    @condition{
+        database != "none"
+    }
+    @content{
+    conn = engine.connect()
+	Base = declarative_base()
+	Session = sessionmaker(bind=engine)
+	session = Session()
+	}
+})
+

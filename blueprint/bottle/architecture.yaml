@@ -46,10 +46,14 @@ files:
     - file: main.tplpy
     - file: __init__.tplpy
     - file: README.md
+    - file: app/settings.tplpy
+    - file: app/__init__.tplpy
+    - file: app/models/__init__.tplpy
+    - file: app/views/__init__.tplpy
+    - file: app/views/home.tplpy
   optional:
     - condition: database != "none"
       dependent:
-      - file: db.tplpy
       - file: .env
     - condition: docker != "No plan"
       dependent:

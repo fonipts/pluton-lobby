@@ -1,5 +1,9 @@
 from flask import Flask
-{{blueprint|if(yes,from .views.simple_page import simple_page)}}
+( @condition if {
+    blueprint == "yes"
+} )
+from .views.simple_page import simple_page
+(@condition end )
 ({   
     @condition{
         database != "none"

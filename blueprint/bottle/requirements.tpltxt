@@ -1,4 +1,4 @@
-bottle==0.12.25
+bottle==0.13.3
 ({ 
     @condition{
         database == "postgres"

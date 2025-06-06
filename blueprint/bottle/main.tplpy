@@ -1,7 +1,11 @@
-from bottle import route, run, template
+from bottle import Bottle,run
+from app.settings import routes
 
-@route('/health')
-def health_name():
-    return "Hello word"
+app = Bottle()
 
-run(host='localhost', port=8080)
+
+for value in routes:
+    app.mount(value["url"], value["view_class"])
+
+if __name__ == "__main__":
+    app.run(host='localhost', port=8080)

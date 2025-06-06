@@ -24,7 +24,7 @@ app_setting_var = {
     }
 
 }
-
+(# Database connection #)
 
 DATABASE_RAW = '''
 ({   
@@ -86,7 +86,7 @@ CACHES_RAW = '''
     }
 
     # Use the Redis cache as the default cache
-    CACHES['default'] = CACHES['redis']
+    CACHES['default'] = CACHES['redis'] (# ) Database connection
 
 }
 
