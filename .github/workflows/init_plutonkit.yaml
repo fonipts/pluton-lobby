@@ -32,5 +32,6 @@ jobs:
     - name: Test the bluprint creation
       working-directory: ./test
       run: |
+        rm -rf *
         python ../script/cmd.py
         rm -rf *
