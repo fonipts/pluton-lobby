@@ -1,0 +1,10 @@
+blueprint: https://raw.githubusercontent.com/fonipts/pluton-lobby/refs/heads/dev/1.0.32a1/blueprint/flask
+default_choices:
+  blueprint: 'yes'
+  database: none
+  docker: None
+  folder_name: flask_ar
+  name: flask_ar
+  py_install: pip
+  redis: 'no'
+name: flask_ar

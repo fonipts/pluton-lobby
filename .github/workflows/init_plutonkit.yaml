@@ -28,4 +28,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e .  # For editable install
         # OR if it uses requirements.txt:
-        # pip install -r requirements.txt
+        pip install -r requirements.txt
+    - name: Test the bluprint creation
+      working-directory: ./test
+      run: |
+        python ../script/cmd.py
+        rm -rf *

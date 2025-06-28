@@ -1,0 +1,10 @@
+env: {}
+script:
+  pip_install:
+    command:
+    - pip install -r requirements.txt
+    description: Install package
+  start:
+    command:
+    - flask --app main run
+    description: Run your application
