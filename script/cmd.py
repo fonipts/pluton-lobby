@@ -6,7 +6,7 @@ import requests
 import os
 import signal
 from subprocess import Popen, PIPE
-import psutil
+
 
 
 def main():
