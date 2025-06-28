@@ -37,7 +37,7 @@ DATABASE_RAW = '''
             "ENGINE": "django.db.backends.postgresql",
             "NAME": config("DB_NAME"),
             "USER": config("DB_USER"),
-            "PASSWORD": quote_plus(config("DB_PASSWORD")),
+            "PASSWORD": config("DB_PASSWORD"),
             "HOST": config("DB_HOST"),
             "PORT": config("DB_PORT")
             }
@@ -53,7 +53,7 @@ DATABASE_RAW = '''
             "ENGINE": "django.db.backends.mysql",
             "NAME": config("DB_NAME"),
             "USER": config("DB_USER"),
-            "PASSWORD": quote_plus(config("DB_PASSWORD")),
+            "PASSWORD": config("DB_PASSWORD"),
             "HOST": config("DB_HOST"),
             "PORT": config("DB_PORT")
         }
@@ -153,7 +153,6 @@ CORS_ALLOW_METHODS = (
                 get_replace_install = results[0]
                 content = """
 from decouple import config\n
-from urllib.parse import quote_plus\n\n
 """+content
                 content  = content.replace(get_replace_install,DATABASE_RAW)
                 write_file(file_loc,content)
