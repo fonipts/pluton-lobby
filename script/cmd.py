@@ -125,14 +125,11 @@ def kill_process_on_port(port):
 def run_project(port,dir):
     print(dir,":dir")
     os.chdir(f"./{dir}")
-    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+    #signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     #kill_process_on_port(port)
     try:
         process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE)
-        stdout, stderr = process.communicate()
-        time.sleep(20)
-        print(str(stdout.decode("utf-8")),"::stdout.decode")
-        print(process.returncode,"::process.returncode")
+       # time.sleep(20)
         x = requests.get(f"http://127.0.0.1:{port}/")
         print(f"http://127.0.0.1:{port}/",":accessing")
         print(x.status_code,":sd")
@@ -161,17 +158,17 @@ def run_project(port,dir):
         os.chdir(f"../")
         
         print("Some output")
-        #process.terminate()
+        process.terminate()
         
         #time.sleep(3)
-        #os.kill(os.getpid(), signal.SIGTERM)
+        os.kill(os.getpid(), signal.SIGTERM)
         #time.sleep(15)
-        #sys.stdout.flush()  # Ensure output is flushed
+        sys.stdout.flush()  # Ensure output is flushed
     except BrokenPipeError:
         # Exit gracefully when the pipe is closed
         print("Broken pipe detected (output truncated)", file=sys.stderr)
-        #sys.stderr.close()  # Avoid "Exception ignored" messages
-        #sys.exit(1)  # Optional: Exit with a non-zero status
+        sys.stderr.close()  # Avoid "Exception ignored" messages
+        sys.exit(1)  # Optional: Exit with a non-zero status
     
 if __name__ == "__main__":
     main()
