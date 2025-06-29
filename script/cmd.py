@@ -50,7 +50,7 @@ def main():
                 "2",
                 "1" # Use 'y' to confirm the creation of the project
             ],
-            "port":"8080"
+            "port":"5000"
         },
         {
             "name":"fastapi",
