@@ -153,12 +153,13 @@ def run_project(port,dir):
         #    print(f"Line {i}")
         time.sleep(10)
         kill_process_on_port(port)
-        process.terminate()
         os.chdir(f"../")
-        print("Some output")
         
-        time.sleep(3)
-        os.kill(os.getpid(), signal.SIGTERM)
+        print("Some output")
+        process.terminate()
+        
+       # time.sleep(3)
+       # os.kill(os.getpid(), signal.SIGTERM)
         #time.sleep(15)
         #sys.stdout.flush()  # Ensure output is flushed
     except BrokenPipeError:
