@@ -120,16 +120,20 @@ def run_project(port,dir):
     time.sleep(10)
     x = requests.get(f"http://0.0.0.0:{port}")
     if x.status_code == 200:
+        
+        print("project url was found")
+        os.chdir(f"../")
         process.terminate()
         kill_process_on_port(port)
-        print("project url was found")
-        os.chdir(f"../")    
+        
         #sys.exit(1)
     else:
+        
+        print(f"project url was not found {x.status_code}")
+        os.chdir(f"../")    
         process.terminate()
         kill_process_on_port(port)
-        print(f"project url was not found {x.status_code}")
-        os.chdir(f"../")
+        
         sys.exit(1)
         
     process.terminate()
