@@ -129,7 +129,9 @@ def run_project(port,dir):
     #kill_process_on_port(port)
     try:
         process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE)
+        stdout, stderr = process.communicate()
         time.sleep(20)
+        print(str(stdout.decode("utf-8")),"::stdout.decode")
         print(process.returncode,"::process.returncode")
         x = requests.get(f"http://127.0.0.1:{port}/")
         print(f"http://127.0.0.1:{port}/",":accessing")
