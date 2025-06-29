@@ -45,5 +45,9 @@ jobs:
     - name: Test the bluprint creation
       working-directory: ./test
       run: |
-        python ../script/cmd.py
+        python ../script/cmd.py flask1
+        python ../script/cmd.py flask2
+        python ../script/cmd.py bottle1
+        python ../script/cmd.py fastapi1
+        python ../script/cmd.py fastapi2
         rm -rf *

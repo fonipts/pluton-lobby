@@ -7,11 +7,8 @@ import os
 import signal
 from subprocess import Popen, PIPE
 
-
-
-def main():
-    project_list = [
-        {
+project_list = {}
+project_list["flask1"]={
             "name":"flask",
             "action": [
                 "flask_ar",
@@ -24,8 +21,8 @@ def main():
                 "1" # Use 'y' to confirm the creation of the project
             ],
             "port":"5000"
-        },
-        {
+        }
+project_list["flask2"]={
             "name":"flask",
             "action": [
                 "flask_ar1",
@@ -38,21 +35,21 @@ def main():
                 "1" # Use 'y' to confirm the creation of the project
             ],
             "port":"5000"
-        },
-      #  {
-      #      "name":"bottle",
-      #      "action": [
-      #          "bottle_ar1",
-      #          "y", 
-      #          "bottle_ar1",
-      #          "1",
-      #          "3",
-      #          "2",
-      #          "1" # Use 'y' to confirm the creation of the project
-      #      ],
-      #      "port":"5000"
-      #  },
-        {
+        }
+project_list["bottle1"]={
+            "name":"bottle",
+            "action": [
+                "bottle_ar1",
+                "y", 
+                "bottle_ar1",
+                "1",
+                "3",
+                "2",
+                "1" # Use 'y' to confirm the creation of the project
+            ],
+            "port":"5000"
+        }
+project_list["fastapi1"]={
             "name":"fastapi",
             "action": [
                 "fastapi_ar",
@@ -65,8 +62,8 @@ def main():
                 "1" # Use 'y' to confirm the creation of the project
             ],
             "port":"8000"
-        },
-        {
+        }
+project_list["fastapi2"]={
             "name":"fastapi",
             "action": [
                 "fastapi_ar1",
@@ -80,11 +77,17 @@ def main():
             ],
             "port":"8000"
         }
-    ]
-    for val in project_list:
-        create_project(val["name"],val["action"])
-        time.sleep(20)
-        run_project(val["port"], val["action"][0]  )
+
+
+
+def main():
+    
+    sys_arg = sys.argv[1]
+    val = project_list[sys_arg]
+    #for val in project_list:
+    create_project(val["name"],val["action"])
+    time.sleep(20)
+    run_project(val["port"], val["action"][0]  )
 
 def create_project(name,actions):
 
@@ -100,9 +103,15 @@ def create_project(name,actions):
     if process.returncode == 0:
         print("Output:")
         print(stdout)
+        process.terminate()
+        sys.stdout.flush()
+        sys.stderr.close()
     else:
         print("Error:")
         print(stderr)
+        process.terminate()
+        sys.stdout.flush()
+        #sys.stderr.close()
 
 def kill_process_on_port(port):
     process = Popen(["lsof", "-i", ":{0}".format(port)], stdout=PIPE, stderr=PIPE)
@@ -116,31 +125,47 @@ def kill_process_on_port(port):
 def run_project(port,dir):
     print(dir,":dir")
     os.chdir(f"./{dir}")
-    process = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE)
-    time.sleep(10)
-    x = requests.get(f"http://0.0.0.0:{port}")
-    if x.status_code == 200:
-        
-        print("project url was found")
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+    #kill_process_on_port(port)
+    try:
+        process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE)
+        time.sleep(10)
+        x = requests.get(f"http://127.0.0.1:{port}/")
+        if x.status_code == 200:
+            
+            print("project url was found")
+        #?    kill_process_on_port(port)
+        #?    os.chdir(f"../")
+        #?    process.terminate()
+            
+            
+            #sys.exit(0)
+        else:
+            
+            print(f"project url was not found {x.status_code}")
+        #?    kill_process_on_port(port)
+        #?    os.chdir(f"../")    
+        #?    process.terminate()
+            
+            
+            sys.exit(1)
+        #for i in range(1000):
+        #    print(f"Line {i}")
+        time.sleep(10)
+        kill_process_on_port(port)
+        process.terminate()
         os.chdir(f"../")
-        process.terminate()
-        kill_process_on_port(port)
+        print("Some output")
         
-        #sys.exit(1)
-    else:
-        
-        print(f"project url was not found {x.status_code}")
-        os.chdir(f"../")    
-        process.terminate()
-        kill_process_on_port(port)
-        
-        sys.exit(1)
-        
-    process.terminate()
-
-    # Wait for the process to actually terminate and get the return code
-    time.sleep(10)
-    return_code = process.wait()
-    print(f"Subprocess terminated with return code: {return_code}")    
+        time.sleep(3)
+        os.kill(os.getpid(), signal.SIGTERM)
+        #time.sleep(15)
+        #sys.stdout.flush()  # Ensure output is flushed
+    except BrokenPipeError:
+        # Exit gracefully when the pipe is closed
+        print("Broken pipe detected (output truncated)", file=sys.stderr)
+        #sys.stderr.close()  # Avoid "Exception ignored" messages
+        #sys.exit(1)  # Optional: Exit with a non-zero status
+    
 if __name__ == "__main__":
     main()
