@@ -125,11 +125,12 @@ def kill_process_on_port(port):
 def run_project(port,dir):
     print(dir,":dir")
     os.chdir(f"./{dir}")
-    #signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     #kill_process_on_port(port)
     try:
-        process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE)
-       # time.sleep(20)
+        process: Popen[str] = subprocess.Popen(['plkcmd', 'start'],stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL)#, stdout=subprocess.PIPE, stderr=PIPE)
+        time.sleep(20)
         x = requests.get(f"http://127.0.0.1:{port}/")
         print(f"http://127.0.0.1:{port}/",":accessing")
         print(x.status_code,":sd")
