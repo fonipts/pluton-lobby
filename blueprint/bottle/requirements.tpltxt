@@ -1,5 +1,5 @@
 bottle==0.13.3
-decouple
+python-decouple
 ({ 
     @condition{
         database == "postgres"

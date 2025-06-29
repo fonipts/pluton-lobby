@@ -1,4 +1,4 @@
 autopep8
 pytest
 pytest-cov
-decouple
+python-decouple

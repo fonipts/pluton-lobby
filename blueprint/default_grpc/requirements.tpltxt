@@ -1,6 +1,6 @@
 grpcio-tools==1.59.2
 grpcio==1.59.2
-decouple
+python-decouple
 ({ 
     @condition{
         database == "postgres"
