@@ -76,7 +76,7 @@ files:
       - file: app/dependency/db.tplpy
       - file: app/model/db/__init__.tplpy
       - file: app/helper/db.tplpy
-      - file: .env     
+      - file: .example.env    
     - condition: docker != "No plan"
       dependent:
       - file: Dockerfile.tpl
