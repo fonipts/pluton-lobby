@@ -26,7 +26,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 src/plutonkit.egg-info
-
+test/*
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
