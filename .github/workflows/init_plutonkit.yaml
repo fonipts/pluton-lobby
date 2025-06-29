@@ -62,7 +62,7 @@ jobs:
     - name: Test the bluprint creation fastapi2
       working-directory: ./test
       run: |
-        python ../script/cmd.py fastapi2                               
+        python ../script/cmd.py fastapi2                              
     - name: Clean bluprint test folder
       working-directory: ./test
       run: |

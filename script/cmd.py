@@ -87,7 +87,9 @@ def main():
     #for val in project_list:
     create_project(val["name"],val["action"])
     time.sleep(20)
+
     run_project(val["port"], val["action"][0]  )
+ 
 
 def create_project(name,actions):
 
@@ -169,6 +171,7 @@ def run_project(port,dir):
         print("Broken pipe detected (output truncated)", file=sys.stderr)
         sys.stderr.close()  # Avoid "Exception ignored" messages
         sys.exit(1)  # Optional: Exit with a non-zero status
-    
+
+     
 if __name__ == "__main__":
     main()

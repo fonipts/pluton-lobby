@@ -46,9 +46,12 @@ script:
   start_dev:
     command:
     - fastapi dev app/main.py
+  start_prod:
+    command:
+    - fastapi run app/main.py
   start:
     command:
-    - fastapi run app/main.py    
+    - uvicorn app.main:app --host 0.0.0.0 --port 8000  
 files:
   default:
     - file: requirements.tpltxt
