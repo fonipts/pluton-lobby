@@ -118,7 +118,7 @@ def create_project(name,actions):
 def kill_process_on_port(port):
     process = Popen(["lsof", "-i", ":{0}".format(port)], stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
-    for process in str(stdout.decode("utf-8")).split("\n")[1:]:       
+    for process in str(stdout).split("\n")[1:]:       
         data = [x for x in process.split(" ") if x != '']
         if (len(data) <= 1):
             continue
