@@ -39,19 +39,19 @@ def main():
             ],
             "port":"5000"
         },
-        {
-            "name":"bottle",
-            "action": [
-                "bottle_ar1",
-                "y", 
-                "bottle_ar1",
-                "1",
-                "3",
-                "2",
-                "1" # Use 'y' to confirm the creation of the project
-            ],
-            "port":"5000"
-        },
+      #  {
+      #      "name":"bottle",
+      #      "action": [
+      #          "bottle_ar1",
+      #          "y", 
+      #          "bottle_ar1",
+      #          "1",
+      #          "3",
+      #          "2",
+      #          "1" # Use 'y' to confirm the creation of the project
+      #      ],
+      #      "port":"5000"
+      #  },
         {
             "name":"fastapi",
             "action": [

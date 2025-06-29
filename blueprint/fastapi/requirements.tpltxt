@@ -1,4 +1,5 @@
 fastapi[standard]==0.112.2
+decouple
 ({ 
     @condition{
         pydantic_choice == "yes"

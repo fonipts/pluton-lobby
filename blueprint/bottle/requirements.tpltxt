@@ -1,4 +1,5 @@
 bottle==0.13.3
+decouple
 ({ 
     @condition{
         database == "postgres"
