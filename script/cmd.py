@@ -153,8 +153,6 @@ def run_project(port,dir):
             
             
             sys.exit(1)
-        #for i in range(1000):
-        #    print(f"Line {i}")
         time.sleep(10)
         kill_process_on_port(port)
         os.chdir(f"../")
