@@ -129,7 +129,7 @@ def run_project(port,dir):
     #kill_process_on_port(port)
     try:
         process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE)
-        time.sleep(10)
+        time.sleep(20)
         x = requests.get(f"http://127.0.0.1:{port}/")
         if x.status_code == 200:
             
