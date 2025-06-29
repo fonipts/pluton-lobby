@@ -42,12 +42,31 @@ jobs:
         pip install -e .  # For editable install
         # OR if it uses requirements.txt:
         pip install -r requirements.txt
-    - name: Test the bluprint creation
+    - name: Test the bluprint creation flask1
       working-directory: ./test
       run: |
         python ../script/cmd.py flask1
+    - name: Test the bluprint creation flask2
+      working-directory: ./test
+      run: |
         python ../script/cmd.py flask2
+        rm -rf *
+    - name: Test the bluprint creation bottle1
+      working-directory: ./test
+      run: |
         python ../script/cmd.py bottle1
+        rm -rf *
+    - name: Test the bluprint creation fastapi1
+      working-directory: ./test
+      run: |
         python ../script/cmd.py fastapi1
+        rm -rf *
+    - name: Test the bluprint creation fastapi2
+      working-directory: ./test
+      run: |
         python ../script/cmd.py fastapi2
+        rm -rf *                                
+    - name: Clean bluprint test folder
+      working-directory: ./test
+      run: |
         rm -rf *
