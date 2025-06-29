@@ -50,22 +50,19 @@ jobs:
       working-directory: ./test
       run: |
         python ../script/cmd.py flask2
-        rm -rf *
+
     - name: Test the bluprint creation bottle1
       working-directory: ./test
       run: |
         python ../script/cmd.py bottle1
-        rm -rf *
     - name: Test the bluprint creation fastapi1
       working-directory: ./test
       run: |
         python ../script/cmd.py fastapi1
-        rm -rf *
     - name: Test the bluprint creation fastapi2
       working-directory: ./test
       run: |
-        python ../script/cmd.py fastapi2
-        rm -rf *                                
+        python ../script/cmd.py fastapi2                               
     - name: Clean bluprint test folder
       working-directory: ./test
       run: |
