@@ -56,7 +56,6 @@ files:
     - file: app/dependency/header.tplpy
     - file: app/dependency/__init__.tplpy
     - file: app/routers/__init__.tplpy
-    - file: app/routers/items.tplpy
     - file: app/routers/users.tplpy
     - file: README.md
   optional:

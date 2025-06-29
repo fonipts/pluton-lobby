@@ -38,6 +38,47 @@ def main():
                 "1" # Use 'y' to confirm the creation of the project
             ],
             "port":"5000"
+        },
+        {
+            "name":"bottle",
+            "action": [
+                "bottle_ar1",
+                "y", 
+                "bottle_ar1",
+                "1",
+                "3",
+                "2",
+                "1" # Use 'y' to confirm the creation of the project
+            ],
+            "port":"8080"
+        },
+        {
+            "name":"fastapi",
+            "action": [
+                "fastapi_ar",
+                "y", 
+                "fastapi_ar",
+                "1",
+                "3",
+                "2",
+                "2",
+                "1" # Use 'y' to confirm the creation of the project
+            ],
+            "port":"8000"
+        },
+        {
+            "name":"fastapi",
+            "action": [
+                "fastapi_ar1",
+                "y", 
+                "fastapi_ar1",
+                "1",
+                "3",
+                "2",
+                "1",
+                "1" # Use 'y' to confirm the creation of the project
+            ],
+            "port":"8000"
         }
     ]
     for val in project_list:
@@ -73,6 +114,7 @@ def kill_process_on_port(port):
 
         os.kill(int(data[1]), signal.SIGKILL)
 def run_project(port,dir):
+    print(dir,":dir")
     os.chdir(f"./{dir}")
     process = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE)
     time.sleep(10)
@@ -81,13 +123,13 @@ def run_project(port,dir):
         process.terminate()
         kill_process_on_port(port)
         print("project url was found")
-        os.chdir(f"./")    
+        os.chdir(f"../")    
         #sys.exit(1)
     else:
         process.terminate()
         kill_process_on_port(port)
         print(f"project url was not found {x.status_code}")
-        os.chdir(f"./")
+        os.chdir(f"../")
         sys.exit(1)
         
     process.terminate()
