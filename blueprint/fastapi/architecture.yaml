@@ -43,9 +43,12 @@ script:
     description: Install package
     command:
     - "{{py_install}} install -r requirements.txt"
-  start:
+  start_dev:
     command:
     - fastapi dev app/main.py
+  start:
+    command:
+    - fastapi run app/main.py    
 files:
   default:
     - file: requirements.tpltxt
