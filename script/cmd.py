@@ -158,10 +158,10 @@ def run_project(port,dir):
         print("Some output")
         #process.terminate()
         
-        time.sleep(3)
-        os.kill(os.getpid(), signal.SIGTERM)
+        #time.sleep(3)
+        #os.kill(os.getpid(), signal.SIGTERM)
         #time.sleep(15)
-        sys.stdout.flush()  # Ensure output is flushed
+        #sys.stdout.flush()  # Ensure output is flushed
     except BrokenPipeError:
         # Exit gracefully when the pipe is closed
         print("Broken pipe detected (output truncated)", file=sys.stderr)
