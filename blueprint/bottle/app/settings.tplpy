@@ -6,7 +6,9 @@ routes = [
 
 
 ({   
-    
+    @condition{
+        database != "none"
+    }    
     @content{
 from decouple import config
 from sqlalchemy import create_engine
