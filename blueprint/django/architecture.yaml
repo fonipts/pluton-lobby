@@ -32,12 +32,6 @@ choices:
       - "django_graphbox"
       - "django_rest_framework"
       - "django_ninja"
-  - name: add_new_testfile
-    question: Do you need health page?
-    type: single_choice
-    option:
-      - "yes"
-      - "no"
   - name: docker
     question: Do you want Dockerfile?
     type: single_choice
@@ -57,16 +51,19 @@ script:
   migrate:
     command:
       - python manage.py migrate
+  runserver:
+    command:
+      - python manage.py runserver      
   start:
     command:
-      - python manage.py runserver
+      - nohup python manage.py runserver 0.0.0.0:8000 > server.log 2>&1 & echo $! > django_pid.txt & sleep 5
 files:
   default:
     - file: requirements.tpltxt
     - file: README.tplmd
     - file: scriptload.tplpy
   optional:
-    - condition: framework == "None" && add_new_testfile == "yes"
+    - condition: framework == "None"
       dependent:
         - file: health/__init__.tplpy
           mv: /{{folder_name}}_clone
@@ -90,7 +87,7 @@ files:
           mv: /{{folder_name}}_clone
         - file: graph_schema/myproject/schema.tplpy
           mv: /{{folder_name}}_clone     
-    - condition: framework == "django_rest_framework" && add_new_testfile == "yes"
+    - condition: framework == "django_rest_framework"
       dependent:
         - file: project/drf/urls.tplpy
           mv: /{{folder_name}}_clone
@@ -108,7 +105,7 @@ files:
           mv: /{{folder_name}}_clone/migrations
         - file: apphealth/migrations/0001_initial.tplpy
           mv: /{{folder_name}}_clone/migrations  
-    - condition: framework == "django_ninja" && add_new_testfile == "yes"
+    - condition: framework == "django_ninja"
       dependent:
         - file: project/ninja/urls.tplpy
           mv: /{{folder_name}}_clone/{{folder_name}}
@@ -117,7 +114,7 @@ files:
         - file: Dockerfile.tpl
     - condition: database != "none"
       dependent:
-      - file: .tplenv
+      - file: .example.tplenv
         mv: /{{folder_name}}_clone
 bootscript:
   - command: "{{py_install}} install -r requirements.txt"

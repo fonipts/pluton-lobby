@@ -79,6 +79,20 @@ project_list["fastapi2"]={
         }
 
 
+project_list["django1"]={
+            "name":"django",
+            "action": [
+                "django_ar1",
+                "y", 
+                "django_ar1",
+                "1",
+                "3",
+                "2",
+                "1",
+                "1" # Use 'y' to confirm the creation of the project
+            ],
+            "port":"8000"
+        }
 
 def main():
     
