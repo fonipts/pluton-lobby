@@ -104,7 +104,6 @@ def main():
 
     run_project(val["port"], val["action"][0]  )
  
-
 def create_project(name,actions):
 
     inputs = "\n".join(actions) + "\n"
