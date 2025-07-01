@@ -188,6 +188,8 @@ def run_project(port, dir):
         print(x.status_code, ":sd")
         if x.status_code == 200:
             print("project url was found")
+            os.chdir("../")
+            sys.exit(0)
         else:
             print(f"project url was not found {x.status_code}")
             process.terminate()
@@ -195,7 +197,7 @@ def run_project(port, dir):
 
        # kill_process_on_port(port)
         os.chdir("../")
-        process.terminate()
+        #process.terminate()
         #sys.stdout.flush()
     except BrokenPipeError:
         print("Broken pipe detected (output truncated)", file=sys.stderr)
