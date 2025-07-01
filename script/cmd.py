@@ -65,7 +65,7 @@ project_list["fastapi1"]={
                 "2",
                 "1" # Use 'y' to confirm the creation of the project
             ],
-            "port":"5050"
+            "port":"5000"
         }
 project_list["fastapi2"]={
             "name":"fastapi",
@@ -79,7 +79,7 @@ project_list["fastapi2"]={
                 "1",
                 "1" # Use 'y' to confirm the creation of the project
             ],
-            "port":"5050"
+            "port":"5000"
         }
 
 
@@ -95,7 +95,7 @@ project_list["django1"]={
                 "1",
                 "1" # Use 'y' to confirm the creation of the project
             ],
-            "port":"5050"
+            "port":"5000"
         }
 
 def main():
