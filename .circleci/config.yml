@@ -36,9 +36,7 @@ jobs:
     - run:
         name: Add submodule to custom folder
         command: |
-          git submodule add -b feature/1.0.32a1/draft-enhancement --name pluton-kit
-          \
-              https://github.com/fonipts/pluton-kit.git ./script/package/pluton-kit
+          git submodule add -b feature/1.0.32a1/draft-enhancement --name pluton-kit https://github.com/fonipts/pluton-kit.git ./script/package/pluton-kit
           git submodule update --init --recursive
     - run:
         command: |
