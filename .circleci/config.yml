@@ -1,9 +1,30 @@
 version: 2.1
+
 executors:
   default_image:
     docker:
-    - image: cimg/base:current
+      - image: cimg/base:current
+
 jobs:
+  say-hello:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - run:
+          name: "Say hello"
+          command: "echo Hello, World!"
+  build:
+    docker:
+    - image: circleci/python:3
+    steps:
+    - checkout
+    - run:
+        name: Install dependencies
+        command: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
   install-pluton-kit:
     executor: default_image
     steps:
@@ -40,8 +61,14 @@ jobs:
     - run:
         name: Clean bluprint test folder
         command: |
-          rm -rf *          
+          rm -rf *        
 workflows:
+  say-hello-workflow:
+    jobs:
+      - say-hello
+  CI_CD_Tests:
+    jobs:
+    - build
   Install_Pluton_Kit:
     jobs:
     - install-pluton-kit
