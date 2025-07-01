@@ -41,16 +41,25 @@ jobs:
           fi
           git submodule update --init --recursive
     - run:
+        name:  Init pip package
         command: |
           python -m pip install --upgrade pip
           cd ./script/package/pluton-kit
           pip install -e .
           pip install -r requirements.txt
           cd ../../../test
+    - run:
+        name:  Flask 1
+        command: |
           python ../script/cmd.py flask1
+    - run:
+        name:  Flask 2
+        command: |
           python ../script/cmd.py flask2
-          python ../script/cmd.py bottle1
-          
+    - run:
+        name:  Bottle 1
+        command: |
+          python ../script/cmd.py bottle1                            
     - run:
         name:  FastAPI
         command: |
