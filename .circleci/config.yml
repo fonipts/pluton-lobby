@@ -48,7 +48,7 @@ jobs:
           cd ./test
           python ../script/cmd.py flask1 &
           SERVER_PID=$!
-          sleep 10
+          sleep 2
           kill $SERVER_PID
           echo "FastAPI server killed after 10 seconds"
     - run:
