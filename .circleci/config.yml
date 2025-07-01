@@ -36,7 +36,9 @@ jobs:
     - run:
         name: Add submodule to custom folder
         command: |
-          git submodule add -b feature/1.0.32a1/draft-enhancement --name pluton-kit https://github.com/fonipts/pluton-kit.git ./script/package/pluton-kit
+          if [ ! -d "./script/package/pluton-kit" ]; then
+            git submodule add -b feature/1.0.32a1/draft-enhancement --name pluton-kit https://github.com/fonipts/pluton-kit.git ./script/package/pluton-kit
+          fi
           git submodule update --init --recursive
     - run:
         command: |
@@ -58,7 +60,7 @@ jobs:
         name:  FastAPI 2
         command: |
           python ../script/cmd.py fastapi2
-          kill -f "uvicorn" || true
+          pkill -f "uvicorn" || true
     - run:
         command: |
           python ../script/cmd.py django1
