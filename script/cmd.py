@@ -65,7 +65,7 @@ project_list["fastapi1"]={
                 "2",
                 "1" # Use 'y' to confirm the creation of the project
             ],
-            "port":"8000"
+            "port":"5050"
         }
 project_list["fastapi2"]={
             "name":"fastapi",
@@ -79,7 +79,7 @@ project_list["fastapi2"]={
                 "1",
                 "1" # Use 'y' to confirm the creation of the project
             ],
-            "port":"8000"
+            "port":"5050"
         }
 
 
@@ -95,7 +95,7 @@ project_list["django1"]={
                 "1",
                 "1" # Use 'y' to confirm the creation of the project
             ],
-            "port":"8000"
+            "port":"5050"
         }
 
 def main():
@@ -143,16 +143,23 @@ def wait_for_port(port, host='127.0.0.1', timeout=60):
     return False
 
 def kill_process_on_port(port):
-    process = Popen(["lsof", "-i", f":{port}"], stdout=PIPE, stderr=PIPE)
-    stdout, _ = process.communicate()
-    for line in str(stdout).split("\\n")[1:]:
-        parts = [x for x in line.split(" ") if x]
-        if len(parts) > 1:
-            try:
-                os.kill(int(parts[1]), signal.SIGKILL)
-                print(f"Killed process {parts[1]} on port {port}")
-            except Exception as e:
-                print(f"Error killing process: {e}")
+    """Kill any process running on the given port."""
+    try:
+        # Find the process using the port
+        process = subprocess.Popen(
+            ["lsof", "-t", f"-i:{port}"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+        stdout, _ = process.communicate()
+        if isinstance(stdout, bytes):
+            stdout = stdout.decode()
+        pids = [int(pid) for pid in stdout.split() if pid.strip()]
+        for pid in pids:
+            os.kill(pid, signal.SIGKILL)
+            print(f"Killed process {pid} on port {port}")
+    except Exception as e:
+        print(f"Error killing process on port {port}: {e}")
 
 def run_project(port, dir):
     print(dir, ":dir")

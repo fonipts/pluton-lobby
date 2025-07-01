@@ -56,7 +56,7 @@ script:
       - python manage.py runserver      
   start:
     command:
-      - python manage.py runserver 0.0.0.0:8000 --noreload
+      - python manage.py runserver 0.0.0.0:5050 --noreload
 files:
   default:
     - file: requirements.tpltxt
