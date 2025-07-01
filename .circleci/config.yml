@@ -47,16 +47,14 @@ jobs:
           cd ./script/package/pluton-kit
           pip install -e .
           pip install -r requirements.txt
-          
     - run:
         name:  Flask 1
         command: |
-          cd ../../../test
+          cd ./test
           python ../script/cmd.py flask1
     - run:
         name:  Flask 2
         command: |
-          cd ../../../test
           python ../script/cmd.py flask2
     - run:
         name:  Bottle 1
@@ -78,7 +76,7 @@ jobs:
     - run:
         name: Clean bluprint test folder
         command: |
-          rm -rf *        
+          rm -rf ./test/*        
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
 workflows:
