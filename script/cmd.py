@@ -5,6 +5,7 @@ import requests
 
 import os
 import signal
+import socket
 from subprocess import Popen, PIPE
 
 project_list = {}
@@ -128,6 +129,16 @@ def create_project(name,actions):
         sys.stdout.flush()
         #sys.stderr.close()
 
+def wait_for_port(port, host='127.0.0.1', timeout=60):
+    start_time = time.time()
+    while time.time() - start_time < timeout:
+        try:
+            with socket.create_connection((host, port), timeout=2):
+                return True
+        except OSError:
+            time.sleep(2)
+    return False
+
 def kill_process_on_port(port):
     process = Popen(["lsof", "-i", ":{0}".format(port)], stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
@@ -144,7 +155,9 @@ def run_project(port,dir):
     #kill_process_on_port(port)
     try:
         process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE, stderr=PIPE)
-        time.sleep(20)
+        if not wait_for_port(port):
+            print(f"Server on port {port} did not start in time.")
+            sys.exit(1)
         x = requests.get(f"http://127.0.0.1:{port}/")
         print(f"http://127.0.0.1:{port}/",":accessing")
         print(x.status_code,":sd")
@@ -166,7 +179,7 @@ def run_project(port,dir):
             
             
             sys.exit(1)
-        time.sleep(10)
+
         kill_process_on_port(port)
         os.chdir(f"../")
         
