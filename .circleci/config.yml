@@ -7,7 +7,7 @@ version: 2.1
 executors:
   default_image:
     docker:
-    - image: circleci/python:3.10
+    - image: cimg/python:3.10
 jobs:
   say-hello:
     docker:
@@ -20,7 +20,7 @@ jobs:
           command: "echo Hello, World!"
   build:
     docker:
-    - image: circleci/python:3
+    - image: cimg/python:3.10
     steps:
     - checkout
     - run:
@@ -55,23 +55,28 @@ jobs:
     - run:
         name:  Flask 2
         command: |
+          cd ./test
           python ../script/cmd.py flask2
     - run:
         name:  Bottle 1
         command: |
+          cd ./test
           python ../script/cmd.py bottle1                            
     - run:
         name:  FastAPI
         command: |
+          cd ./test
           python ../script/cmd.py fastapi1
           pkill -f "uvicorn" || true
     - run:
         name:  FastAPI 2
         command: |
+          cd ./test
           python ../script/cmd.py fastapi2
           pkill -f "uvicorn" || true
     - run:
         command: |
+          cd ./test
           python ../script/cmd.py django1
     - run:
         name: Clean bluprint test folder
