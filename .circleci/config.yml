@@ -64,6 +64,13 @@ jobs:
     steps:
     - checkout
     - run:
+        name: Add submodule to custom folder
+        command: |
+          if [ ! -d "./script/package/pluton-kit" ]; then
+            git submodule add -b feature/1.0.32a1/draft-enhancement --name pluton-kit https://github.com/fonipts/pluton-kit.git ./script/package/pluton-kit
+          fi
+          git submodule update --init --recursive    
+    - run:
         name:  Init pip package
         command: |
           python -m pip install --upgrade pip
