@@ -186,10 +186,12 @@ def run_project(port, dir):
 
         x = requests.get(f"http://127.0.0.1:{port}/")
         print(f"http://127.0.0.1:{port}/", ":accessing")
+        
         print(x.status_code, ":sd")
         if x.status_code == 200:
             print("project url was found")
            # process.terminate()
+            kill_process_on_port(port)
             sys.exit(0)
         else:
             print(f"project url was not found {x.status_code}")
