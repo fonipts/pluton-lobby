@@ -41,6 +41,7 @@ jobs:
           cd ./script/package/pluton-kit
           pip install -e .
           pip install -r requirements.txt
+          pip install psutil
     - run:
         name:  Flask 1
         command: |
