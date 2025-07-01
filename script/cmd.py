@@ -8,7 +8,8 @@ import os
 import signal
 import socket
 from subprocess import Popen, PIPE
-#import psutil
+import psutil
+
 
 project_list = {}
 project_list["flask1"]={
@@ -190,7 +191,7 @@ def run_project(port, dir):
         print(x.status_code, ":sd")
         if x.status_code == 200:
             print("project url was found")
-            
+            print("Memory usage (MB) before server start:", psutil.Process(os.getpid()).memory_info().rss / 1024 ** 2)
            
             kill_process_on_port(port)
             process.terminate()    
