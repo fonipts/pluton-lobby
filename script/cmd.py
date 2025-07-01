@@ -200,6 +200,14 @@ def run_project(port, dir):
         print("Broken pipe detected (output truncated)", file=sys.stderr)
         sys.stderr.close()
         sys.exit(1)
+    finally:
+        kill_process_on_port(port)
+        #if process are killed, or call :
+        process.terminate()
+        #osgc.collect()` to force garbage collection.
+
+#### 3. Split.chdir("../")
+        sys.stdout.flush()    
      
 if __name__ == "__main__":
     main()
