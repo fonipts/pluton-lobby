@@ -60,7 +60,7 @@ jobs:
     #executor: default_image
     docker:
     - image: cimg/python:3.10
-    resource_class: xlarge
+    resource_class: large
     steps:
     - checkout
     - run:
