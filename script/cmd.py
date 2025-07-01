@@ -196,7 +196,7 @@ def run_project(port, dir):
        # kill_process_on_port(port)
         os.chdir("../")
         process.terminate()
-        sys.stdout.flush()
+        #sys.stdout.flush()
     except BrokenPipeError:
         print("Broken pipe detected (output truncated)", file=sys.stderr)
         sys.stderr.close()
