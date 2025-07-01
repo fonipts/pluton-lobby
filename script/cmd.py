@@ -16,7 +16,6 @@ project_list["flask1"]={
             "name":"flask",
             "action": [
                 "flask_ar",
-                "y", 
                 "flask_ar",
                 "1",
                 "3",
@@ -30,7 +29,6 @@ project_list["flask2"]={
             "name":"flask",
             "action": [
                 "flask_ar1",
-                "y", 
                 "flask_ar1",
                 "1",
                 "3",
@@ -44,7 +42,6 @@ project_list["bottle1"]={
             "name":"bottle",
             "action": [
                 "bottle_ar1",
-                "y", 
                 "bottle_ar1",
                 "1",
                 "3",
@@ -57,7 +54,6 @@ project_list["fastapi1"]={
             "name":"fastapi",
             "action": [
                 "fastapi_ar",
-                "y", 
                 "fastapi_ar",
                 "1",
                 "3",
@@ -71,7 +67,6 @@ project_list["fastapi2"]={
             "name":"fastapi",
             "action": [
                 "fastapi_ar1",
-                "y", 
                 "fastapi_ar1",
                 "1",
                 "3",
@@ -87,7 +82,6 @@ project_list["django1"]={
             "name":"django",
             "action": [
                 "django_ar1",
-                "y", 
                 "django_ar1",
                 "1",
                 "3",
