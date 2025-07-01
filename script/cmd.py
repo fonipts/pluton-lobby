@@ -2,6 +2,7 @@ import subprocess
 import time
 import sys
 import requests
+import select
 
 import os
 import signal
@@ -140,64 +141,65 @@ def wait_for_port(port, host='127.0.0.1', timeout=60):
     return False
 
 def kill_process_on_port(port):
-    process = Popen(["lsof", "-i", ":{0}".format(port)], stdout=PIPE, stderr=PIPE)
-    stdout, stderr = process.communicate()
-    for process in str(stdout).split("\n")[1:]:       
-        data = [x for x in process.split(" ") if x != '']
-        if (len(data) <= 1):
-            continue
+    process = Popen(["lsof", "-i", f":{port}"], stdout=PIPE, stderr=PIPE)
+    stdout, _ = process.communicate()
+    for line in str(stdout).split("\\n")[1:]:
+        parts = [x for x in line.split(" ") if x]
+        if len(parts) > 1:
+            try:
+                os.kill(int(parts[1]), signal.SIGKILL)
+                print(f"Killed process {parts[1]} on port {port}")
+            except Exception as e:
+                print(f"Error killing process: {e}")
 
-        os.kill(int(data[1]), signal.SIGKILL)
-def run_project(port,dir):
-    print(dir,":dir")
+def run_project(port, dir):
+    print(dir, ":dir")
     os.chdir(f"./{dir}")
-    #signal.signal(signal.SIGPIPE, signal.SIG_DFL)
-    #kill_process_on_port(port)
+    kill_process_on_port(port)
     try:
-        process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE, stderr=PIPE, text=True)
-        stdout_output, stderr_output = process.communicate(timeout=160)
-        print("Server stderr:", stderr_output)
-        if not wait_for_port(port):
+        process = subprocess.Popen(
+            ['plkcmd', 'start'],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+
+        # Wait for the server to start
+        if not wait_for_port(int(port)):
             print(f"Server on port {port} did not start in time.")
+            process.terminate()
             sys.exit(1)
+
+        # Optionally, read a few lines of output (non-blocking)
+        for _ in range(5):
+            ready, _, _ = select.select([process.stdout], [], [], 1)  # 1 second timeout
+            if ready:
+                line = process.stdout.readline()
+                if not line:
+                    break
+                print("Server output:", line.strip())
+            else:
+                print("No server output (timeout)")
+                break
+
         x = requests.get(f"http://127.0.0.1:{port}/")
-        print(f"http://127.0.0.1:{port}/",":accessing")
-        print(x.status_code,":sd")
+        print(f"http://127.0.0.1:{port}/", ":accessing")
+        print(x.status_code, ":sd")
         if x.status_code == 200:
-            
             print("project url was found")
-        #?    kill_process_on_port(port)
-        #?    os.chdir(f"../")
-        #?    process.terminate()
-            
-            
-            #sys.exit(0)
         else:
-            
             print(f"project url was not found {x.status_code}")
-        #?    kill_process_on_port(port)
-        #?    os.chdir(f"../")    
-        #?    process.terminate()
-            
-            
+            process.terminate()
             sys.exit(1)
 
         kill_process_on_port(port)
-        os.chdir(f"../")
-        
-        print("Some output")
+        os.chdir("../")
         process.terminate()
-        
-        #time.sleep(3)
-        #os.kill(os.getpid(), signal.SIGTERM)
-        #time.sleep(15)
-        sys.stdout.flush()  # Ensure output is flushed
+        sys.stdout.flush()
     except BrokenPipeError:
-        # Exit gracefully when the pipe is closed
         print("Broken pipe detected (output truncated)", file=sys.stderr)
-        sys.stderr.close()  # Avoid "Exception ignored" messages
-        sys.exit(1)  # Optional: Exit with a non-zero status
-
+        sys.stderr.close()
+        sys.exit(1)
      
 if __name__ == "__main__":
     main()

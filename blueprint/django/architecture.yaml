@@ -56,7 +56,7 @@ script:
       - python manage.py runserver      
   start:
     command:
-      - nohup python manage.py runserver 0.0.0.0:8000 > server.log 2>&1 & echo $! > django_pid.txt & sleep 5
+      - python manage.py runserver 0.0.0.0:8000 --noreload
 files:
   default:
     - file: requirements.tpltxt
