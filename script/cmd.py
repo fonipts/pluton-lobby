@@ -155,7 +155,7 @@ def kill_process_on_port(port):
 def run_project(port, dir):
     print(dir, ":dir")
     os.chdir(f"./{dir}")
-    kill_process_on_port(port)
+    #kill_process_on_port(port)
     print(":port kill")
     try:
         process = subprocess.Popen(
