@@ -7,7 +7,7 @@ version: 2.1
 executors:
   default_image:
     docker:
-    - image: circleci/python:3
+    - image: circleci/python:3.10
 jobs:
   say-hello:
     docker:
