@@ -7,7 +7,7 @@ version: 2.1
 executors:
   default_image:
     docker:
-    - image: cimg/base:current
+    - image: circleci/python:3
 jobs:
   say-hello:
     docker:
