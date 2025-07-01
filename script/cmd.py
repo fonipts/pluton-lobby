@@ -193,7 +193,7 @@ def run_project(port, dir):
             process.terminate()
             sys.exit(1)
 
-        kill_process_on_port(port)
+       # kill_process_on_port(port)
         os.chdir("../")
         process.terminate()
         sys.stdout.flush()
