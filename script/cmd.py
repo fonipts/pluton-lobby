@@ -101,7 +101,7 @@ def main():
     val = project_list[sys_arg]
     #for val in project_list:
     create_project(val["name"],val["action"])
-    time.sleep(20)
+    time.sleep(10)
 
     run_project(val["port"], val["action"][0]  )
  
@@ -154,7 +154,9 @@ def run_project(port,dir):
     #signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     #kill_process_on_port(port)
     try:
-        process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE, stderr=PIPE)
+        process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE, stderr=PIPE, text=True)
+        stdout_output, stderr_output = process.communicate(timeout=10)
+        print("Server stderr:", stderr_output)
         if not wait_for_port(port):
             print(f"Server on port {port} did not start in time.")
             sys.exit(1)
