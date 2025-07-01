@@ -155,7 +155,7 @@ def run_project(port,dir):
     #kill_process_on_port(port)
     try:
         process: Popen[str] = subprocess.Popen(['plkcmd', 'start'], stdout=subprocess.PIPE, stderr=PIPE, text=True)
-        stdout_output, stderr_output = process.communicate(timeout=10)
+        stdout_output, stderr_output = process.communicate(timeout=20)
         print("Server stderr:", stderr_output)
         if not wait_for_port(port):
             print(f"Server on port {port} did not start in time.")
