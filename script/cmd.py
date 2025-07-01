@@ -160,7 +160,7 @@ def run_project(port, dir):
     print(":port kill")
     try:
         process = subprocess.Popen(
-            ['plkcmd', 'start',"--workers", "1"],
+            ['plkcmd', 'start'],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True
