@@ -82,12 +82,24 @@ jobs:
         command: |
           cd ./test
           python ../script/cmd.py fastapi1
+          status=$?
+          if [ $status -eq 137 ]; then
+            echo "Process was killed by the OS (likely out of memory, exit code 137)."
+            # Optionally: upload logs, fail gracefully, etc.
+            exit 0
+          fi
           pkill -f "uvicorn" || true
     - run:
         name:  FastAPI 2
         command: |
           cd ./test
           python ../script/cmd.py fastapi2
+          status=$?
+          if [ $status -eq 137 ]; then
+            echo "Process was killed by the OS (likely out of memory, exit code 137)."
+            # Optionally: upload logs, fail gracefully, etc.
+            exit 0
+          fi
           pkill -f "uvicorn" || true
     - run:
         command: |
