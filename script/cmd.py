@@ -104,7 +104,7 @@ def main():
     val = project_list[sys_arg]
     #for val in project_list:
     create_project(val["name"],val["action"])
-    time.sleep(10)
+    #time.sleep(10)
 
     run_project(val["port"], val["action"][0]  )
  
@@ -217,6 +217,7 @@ def run_project(port, dir):
         sys.stderr.close()
         sys.exit(1)
     finally:
+        print("System down due to memory")
         kill_process_on_port(port)
         #if process are killed, or call :
         process.terminate()
