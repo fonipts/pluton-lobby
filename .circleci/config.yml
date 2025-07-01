@@ -47,6 +47,11 @@ jobs:
         command: |
           cd ./test
           python ../script/cmd.py flask1
+          status=$?
+          if [ $status -eq 137 ]; then
+            echo "Process was killed by the OS (likely out of memory, exit code 137)."
+            exit 137
+          fi
     - run:
         name:  Flask 2
         command: |
