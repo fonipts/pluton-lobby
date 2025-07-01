@@ -1,0 +1,49 @@
+version: 2.1
+executors:
+  default_image:
+    docker:
+    - image: cimg/base:current
+jobs:
+  install-pluton-kit:
+    executor: default_image
+    steps:
+    - checkout
+    - run:
+        name: Add submodule to custom folder
+        command: |
+          git submodule add -b feature/1.0.32a1/draft-enhancement --name pluton-kit
+          \
+              https://github.com/fonipts/pluton-kit.git ./script/package/pluton-kit
+          git submodule update --init --recursive
+    - run:
+        command: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install -r requirements.txt
+          python ../script/cmd.py flask1
+          python ../script/cmd.py flask2
+          python ../script/cmd.py bottle1
+          
+    - run:
+        name:  FastAPI
+        command: |
+          python ../script/cmd.py fastapi1
+          pkill -f "uvicorn" || true
+    - run:
+        name:  FastAPI 2
+        command: |
+          python ../script/cmd.py fastapi2
+          kill -f "uvicorn" || true
+    - run:
+        command: |
+          python ../script/cmd.py django1
+    - run:
+        name: Clean bluprint test folder
+        command: |
+          rm -rf *          
+workflows:
+  Install_Pluton_Kit:
+    jobs:
+    - install-pluton-kit
+# Translated via CircleCI's Configuration Translator
+# Info :: Could not translate "strategy" in workflow "Install Pluton Kit", in job "install-pluton-kit"
