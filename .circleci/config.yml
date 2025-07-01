@@ -30,7 +30,10 @@ jobs:
           pip install -r requirements.txt
 
   install-pluton-kit:
-    executor: default_image
+    #executor: default_image
+    docker:
+    - image: cimg/python:3.10
+    resource_class: large
     steps:
     - checkout
     - run:

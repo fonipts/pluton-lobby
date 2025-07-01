@@ -8,6 +8,7 @@ import os
 import signal
 import socket
 from subprocess import Popen, PIPE
+#import psutil
 
 project_list = {}
 project_list["flask1"]={
@@ -159,7 +160,7 @@ def run_project(port, dir):
     print(":port kill")
     try:
         process = subprocess.Popen(
-            ['plkcmd', 'start'],
+            ['plkcmd', 'start',"--workers", "1"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True
@@ -192,7 +193,7 @@ def run_project(port, dir):
             print(f"project url was not found {x.status_code}")
             process.terminate()
             sys.exit(1)
-
+        #print("Memory usage (MB):", psutil.Process().memory_info().rss / 1024 ** 2)
         kill_process_on_port(port)
         os.chdir("../")
         process.terminate()
