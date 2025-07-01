@@ -189,6 +189,8 @@ def run_project(port, dir):
         print(x.status_code, ":sd")
         if x.status_code == 200:
             print("project url was found")
+            process.terminate()
+            sys.exit(0)
         else:
             print(f"project url was not found {x.status_code}")
             process.terminate()
