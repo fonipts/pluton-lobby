@@ -47,14 +47,16 @@ jobs:
           cd ./script/package/pluton-kit
           pip install -e .
           pip install -r requirements.txt
-          cd ../../../test
+          
     - run:
         name:  Flask 1
         command: |
+          cd ../../../test
           python ../script/cmd.py flask1
     - run:
         name:  Flask 2
         command: |
+          cd ../../../test
           python ../script/cmd.py flask2
     - run:
         name:  Bottle 1
