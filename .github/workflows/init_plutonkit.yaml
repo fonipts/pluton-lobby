@@ -60,13 +60,13 @@ jobs:
       run: |
         python ../script/cmd.py fastapi1
     - name: Kill FastAPI
-      run: pkill -f "uvicorn"
+      run: pkill -f "uvicorn" || true
     - name: Test the bluprint creation fastapi2
       working-directory: ./test
       run: |
         python ../script/cmd.py fastapi2
     - name: Kill FastAPI 2
-      run: pkill -f "uvicorn"        
+      run: pkill -f "uvicorn" || true        
     - name: Test the bluprint creation django1
       working-directory: ./test
       run: |

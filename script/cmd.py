@@ -3,7 +3,7 @@ import time
 import sys
 import requests
 import select
-
+import gc
 import os
 import signal
 import socket
@@ -204,6 +204,8 @@ def run_project(port, dir):
         kill_process_on_port(port)
         #if process are killed, or call :
         process.terminate()
+        sys.stdout.flush()
+        gc.collect()
         #osgc.collect()` to force garbage collection.
 
 #### 3. Split.chdir("../")
