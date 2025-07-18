@@ -24,6 +24,7 @@ def run(ar):
 		shutil.move(f"{folder_name}_clone/health", f"{folder_name}")
 		shutil.rmtree(f"{folder_name}_clone")
 		subprocess.Popen(f"python scriptload.py setting_app {folder_name} default", shell=True)
+		time.sleep(5)
 		 
 
 	if framework == "django_graphbox":
@@ -31,6 +32,7 @@ def run(ar):
 		shutil.move(f"{folder_name}_clone/graph_schema", f"{folder_name}")
 		shutil.rmtree(f"{folder_name}_clone")
 		subprocess.Popen(f"python scriptload.py setting_app {folder_name} graphbox", shell=True)
+		time.sleep(5)
 		 
 
 	if framework == "django_rest_framework":
@@ -38,20 +40,24 @@ def run(ar):
 		shutil.move(f"{folder_name}_clone/apphealth", f"{folder_name}")
 		shutil.rmtree(f"{folder_name}_clone")
 		subprocess.Popen(f"python scriptload.py setting_app {folder_name} drf", shell=True)
+		time.sleep(5)
 		 
 
 	if framework == "django_ninja":
 		shutil.move(f"{folder_name}_clone/ninja/drf/urls.py", f"{folder_name}")
 		shutil.rmtree(f"{folder_name}_clone")
+		time.sleep(5)
 		
 	is_add_config = False
 	if database != "none":
 		is_add_config = True
 		subprocess.Popen(f"python scriptload.py setting_db_app {folder_name} default", shell=True)
+		time.sleep(5)
 
 	if redis == "yes":
 		is_add_config = True
 		subprocess.Popen(f"python scriptload.py setting_cache_app {folder_name} default ", shell=True)	
+		time.sleep(5)
 	if is_add_config:
 		subprocess.Popen(f"python scriptload.py setting_app_add_config {folder_name} default ", shell=True)	
 	time.sleep(5)	
