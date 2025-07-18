@@ -16,7 +16,7 @@ def run(ar):
 	os.remove(f"{folder_name}/{folder_name}/urls.py")
 	shutil.move(f"{folder_name}/{folder_name}", f"{folder_name}_clone1")
 	os.rmdir(f"{folder_name}")
-	#shutil.move(f"{folder_name}_clone/.env", ".env")
+	shutil.move(f"{folder_name}_clone/.example.env", ".example.env")
 	
 	os.rename(f"{folder_name}_clone1", f"{folder_name}")
 	if framework == "None":
