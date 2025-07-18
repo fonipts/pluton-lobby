@@ -44,10 +44,15 @@ def run(ar):
 		shutil.move(f"{folder_name}_clone/ninja/drf/urls.py", f"{folder_name}")
 		shutil.rmtree(f"{folder_name}_clone")
 		
+	is_add_config = False
 	if database != "none":
+		is_add_config = True
 		subprocess.Popen(f"python scriptload.py setting_db_app {folder_name} default", shell=True)
 
 	if redis == "yes":
+		is_add_config = True
 		subprocess.Popen(f"python scriptload.py setting_cache_app {folder_name} default ", shell=True)	
+	if is_add_config:
+		subprocess.Popen(f"python scriptload.py setting_app_add_config {folder_name} default ", shell=True)	
 	time.sleep(5)	
 	os.remove("scriptload.py")
