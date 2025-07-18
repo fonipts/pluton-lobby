@@ -100,6 +100,13 @@ def main():
     arguments = sys.argv[3]
     directory = os.getcwd()
 
+    if (types == "setting_app" and package_name!="default") or types == "setting_cache_app":
+        file_loc = os.path.join(
+                directory, package_name, "settings.py"
+            )
+        with open(file_loc,"r") as read_file:
+            content  =read_file.read()    
+            write_file(file_loc,"from decouple import config\n"+content)
     if types == "setting_app":
         file_loc = os.path.join(
                 directory, package_name, "settings.py"
