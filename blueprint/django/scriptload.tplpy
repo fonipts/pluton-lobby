@@ -100,13 +100,6 @@ def main():
     arguments = sys.argv[3]
     directory = os.getcwd()
 
-    if (types == "setting_app" and package_name!="default") or types == "setting_cache_app":
-        file_loc = os.path.join(
-                directory, package_name, "settings.py"
-            )
-        with open(file_loc,"r") as read_file:
-            content  =read_file.read()    
-            write_file(file_loc,"from decouple import config\n"+content)
     if types == "setting_app":
         file_loc = os.path.join(
                 directory, package_name, "settings.py"
@@ -158,9 +151,6 @@ CORS_ALLOW_METHODS = (
             results = re.findall(r"(DATABASES[\s\n]{0,}\=[\s\n]{0,}\{[\n\s\"\'\w\d\:\{\}\.\,\/\\]{1,}\})",content)
             if len(results) >0:
                 get_replace_install = results[0]
-                content = """
-from decouple import config\n
-"""+content
                 content  = content.replace(get_replace_install,DATABASE_RAW)
                 write_file(file_loc,content)
 
@@ -173,6 +163,14 @@ from decouple import config\n
             
             content  = content+CACHES_RAW
             write_file(file_loc,content)                
+
+    if types == "setting_app_add_config":
+        file_loc = os.path.join(
+                directory, package_name, "settings.py"
+            )
+        with open(file_loc,"r") as read_file:
+            content  =read_file.read()    
+            write_file(file_loc,"from decouple import config\n\n"+content)
 
 def write_file(file,content):
     with open(file, "w", encoding="utf-8") as f_write:
