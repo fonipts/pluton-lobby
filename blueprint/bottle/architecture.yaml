@@ -54,7 +54,7 @@ files:
   optional:
     - condition: database != "none"
       dependent:
-      - file: .env
+      - file: .example.env
     - condition: docker != "No plan"
       dependent:
       - file: Dockerfile.tpl
