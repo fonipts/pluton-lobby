@@ -35,6 +35,6 @@ python-decouple
         redis == "yes"
     }
     @content{
-    redis==5.0.4    
+    redis==6.2.0
     }
 })

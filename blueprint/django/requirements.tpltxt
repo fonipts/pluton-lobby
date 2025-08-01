@@ -17,11 +17,11 @@ python-decouple
         framework == "django_rest_framework"
     }
     @content{
-        Django==4.1
-        djangorestframework==3.14.0
+        Django==5.2
+        djangorestframework==3.16.0
         markdown==3.5.1
         django-filter==23.3
-        django-cors-headers==4.4.0
+        django-cors-headers==4.7.0
     }
     @condition{
         framework == "django_ninja"
@@ -56,7 +56,7 @@ python-decouple
         redis == "yes"
     }
     @content{
-    redis==5.0.4
-    django-redis==5.4.0
+    redis==6.2.0
+    django-redis==6.0.0
     }
 })
