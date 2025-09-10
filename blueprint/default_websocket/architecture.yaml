@@ -4,14 +4,6 @@ choices:
   - name: project_name
     question: What is your project name
     type: input
-  - name: py_install
-    question: What package installer do you want to use?
-    type: single_choice
-    default: pip
-    option:
-      - pip
-      - pip2
-      - pip3
 script:
   pip_install:
     description: Install package

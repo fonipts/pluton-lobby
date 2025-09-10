@@ -3,14 +3,6 @@ choices:
   - name: name
     question: What is your name
     type: input
-  - name: py_install
-    question: What package installer do you want to use?
-    type: single_choice
-    default: pip
-    option:
-      - pip
-      - pip2
-      - pip3    
   - name: database
     question: What is your Database choice?
     type: single_choice
@@ -42,7 +34,7 @@ script:
   pip_install:
     description: Install package
     command:
-    - "{{py_install}} install -r requirements.txt"
+    - "pip install -r requirements.txt"
   start:
     description: Run your application
     command:
@@ -59,11 +51,12 @@ files:
       - file: Dockerfile.tpl
     - condition: database != "none"
       dependent:
-      - file: .example.env    
+      - file: .example.env
+      - file: models/__init__.tplpy
     - condition: blueprint == "yes"
       dependent:
       - file: views/__init__.tplpy
       - file: views/simple_page.tplpy
       - file: templates/__init__.tplpy
 bootscript:
-  - command: "{{py_install}} install -r requirements.txt"
+  - command: "pip install -r requirements.txt"

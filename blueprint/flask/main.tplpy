@@ -3,7 +3,7 @@ from flask import Flask
     blueprint == "yes"
 } )
 from .views.simple_page import simple_page
-(@condition end )
+(@end if )
 ({   
     @condition{
         database != "none"
