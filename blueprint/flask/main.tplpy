@@ -1,5 +1,5 @@
 from flask import Flask
-( @condition if {
+(@condition if {
     blueprint == "yes"
 } )
 from .views.simple_page import simple_page
